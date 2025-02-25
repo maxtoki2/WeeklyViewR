@@ -1,0 +1,24 @@
+BUGs
+- Sparite le entry mensa? (o bianco su bianco)
+
+DONE
+- Rifiutologo
+- Menu scuola (https://chatgpt.com/share/66fe9531-9494-800c-857d-593897e57dca)
+- Calendari
+- MLB
+
+TODO
+- Lista spesa
+- Meteo
+
+MASTER
+- run modules
+- print pdf
+- upload
+
+AESTHETICS
+- dimensioni
+- sfondi e linee
+- colore testo dinamico in base allo sfondo
+
+REWORK

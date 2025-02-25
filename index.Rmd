@@ -1,0 +1,40 @@
+---
+title: "Calendario Settimana"
+output: html_document
+date: "Ultimo aggiornamento: `r Sys.time()`"
+---
+
+<script>
+function updateClock() {
+  var now = new Date();
+  var hours = now.getHours().toString().padStart(2, '0');
+  var minutes = now.getMinutes().toString().padStart(2, '0');
+  document.getElementById('clock').innerHTML = hours + ":" + minutes;
+}
+setInterval(updateClock, 15000);
+</script>
+
+<div id="clock" style="font-size: 24px; font-weight: bold;"></div>
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+```
+
+## {.tabset}
+
+### Corrente
+
+```{r, echo=FALSE, ft.arraystretch = 1}
+set_flextable_defaults(fonts_ignore=TRUE)
+tables[[1]]
+
+```
+
+### Prossima
+
+```{r, echo=FALSE, ft.arraystretch = 1}
+
+tables[[2]]
+
+```
