@@ -38,3 +38,69 @@ tables[[1]]
 tables[[2]]
 
 ```
+
+## Note
+
+
+<canvas id="drawingCanvas" width="400" height="300" 
+        style="border:2px solid black; touch-action: none;"></canvas>
+<br>
+<button onclick="clearCanvas()">Clear</button>
+
+<script>
+  var canvas = document.getElementById("drawingCanvas");
+  var ctx = canvas.getContext("2d");
+  var drawing = false;
+
+  function getMousePos(event) {
+    var rect = canvas.getBoundingClientRect(); // Get accurate canvas position
+    return {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    };
+  }
+
+  function startDraw(event) {
+    drawing = true;
+    var pos = getMousePos(event);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    event.preventDefault();
+  }
+
+  function draw(event) {
+    if (!drawing) return;
+    var pos = getMousePos(event);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = "black"; // Line color
+    ctx.lineWidth = 2;         // Line thickness
+    ctx.stroke();
+    event.preventDefault();
+  }
+
+  function stopDraw() {
+    drawing = false;
+    ctx.closePath();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // Mouse Events
+  canvas.addEventListener("mousedown", startDraw);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDraw);
+  canvas.addEventListener("mouseout", stopDraw);
+
+  // Touch Events (for stylus or touchscreen)
+  canvas.addEventListener("touchstart", function(event) {
+    startDraw(event.touches[0]);
+  });
+
+  canvas.addEventListener("touchmove", function(event) {
+    draw(event.touches[0]);
+  });
+
+  canvas.addEventListener("touchend", stopDraw);
+</script>
