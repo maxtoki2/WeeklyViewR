@@ -4,6 +4,7 @@ output: html_document
 date: "Ultimo aggiornamento: `r Sys.time()`"
 ---
 
+```{=html}
 <script>
 function updateClock() {
   var now = new Date();
@@ -13,15 +14,17 @@ function updateClock() {
 }
 setInterval(updateClock, 15000);
 </script>
+```
 
-<div id="clock" style="font-size: 24px; font-weight: bold;"></div>
+::: {#clock style="font-size: 24px; font-weight: bold;"}
+:::
 
 ```{r setup, include=FALSE}
 library(knitr)
 library(kableExtra)
 ```
 
-## {.tabset}
+##  {.tabset}
 
 ### Corrente
 
@@ -41,7 +44,6 @@ tables[[2]]
 
 ## Note
 
-
 <canvas id="drawingCanvas" width="400" height="300" 
         style="border:2px solid black; touch-action: none;"></canvas>
 <br>
@@ -53,7 +55,7 @@ tables[[2]]
   var drawing = false;
 
   function getMousePos(event) {
-    var rect = canvas.getBoundingClientRect(); // Get accurate canvas position
+    var rect = canvas.getBoundingClientRect();
     return {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top
@@ -72,20 +74,41 @@ tables[[2]]
     if (!drawing) return;
     var pos = getMousePos(event);
     ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle = "black"; // Line color
-    ctx.lineWidth = 2;         // Line thickness
+    ctx.strokeStyle = "black"; 
+    ctx.lineWidth = 2;
     ctx.stroke();
     event.preventDefault();
+    saveCanvas(); // Save after each stroke
   }
 
   function stopDraw() {
     drawing = false;
     ctx.closePath();
+    saveCanvas(); // Save final drawing state
   }
 
   function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    localStorage.removeItem("savedCanvas"); // Remove saved data
   }
+
+  function saveCanvas() {
+    localStorage.setItem("savedCanvas", canvas.toDataURL()); // Convert canvas to an image string
+  }
+
+  function loadCanvas() {
+    var savedData = localStorage.getItem("savedCanvas");
+    if (savedData) {
+      var img = new Image();
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+      };
+      img.src = savedData;
+    }
+  }
+
+  // Load canvas on page load
+  window.onload = loadCanvas;
 
   // Mouse Events
   canvas.addEventListener("mousedown", startDraw);
