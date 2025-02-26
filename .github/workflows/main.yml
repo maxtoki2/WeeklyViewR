@@ -26,6 +26,11 @@ jobs:
           sudo update-locale LANG=it_IT.UTF-8
           export LANG=it_IT.UTF-8
           export LC_ALL=it_IT.UTF-8
+          
+      - name: Install Pandoc
+        run: |
+          sudo apt-get install -y pandoc
+
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
