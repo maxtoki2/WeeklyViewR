@@ -32,5 +32,9 @@ jobs:
           Rscript -e 'install.packages(c("tidyr", "dplyr", "lubridate", "glue", "stringr", "httr", "jsonlite", "flextable", "calendar", "DescTools", "rmarkdown", "knitr", "kableExtra", "curl", "magick"))'
 
       - name: Run R script
+        env:
+          GCAL_FAMIGLIA: ${{ secrets.GCAL_FAMIGLIA }}
+          ID_INDIRIZZO: ${{ secrets.ID_INDIRIZZO }}
+          ID_CIVICO: ${{ secrets.ID_CIVICO }}
         run: |
           Rscript lifeR_master.R
