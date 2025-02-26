@@ -1,8 +1,15 @@
 ---
 title: "Calendario Settimana"
 output: html_document
-date: "Ultimo aggiornamento: `r Sys.time()`"
 ---
+
+<style>
+  h1.title {
+    display: none;
+  }
+</style>
+
+Ultimo aggiornamento: `r format(Sys.time(), "%d %B %Y %H:%M")`
 
 ```{=html}
 <script>
@@ -12,7 +19,7 @@ function updateClock() {
   var minutes = now.getMinutes().toString().padStart(2, '0');
   document.getElementById('clock').innerHTML = hours + ":" + minutes;
 }
-setInterval(updateClock, 15000);
+setInterval(updateClock, 1000);
 </script>
 ```
 

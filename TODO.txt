@@ -1,5 +1,4 @@
 BUGs
-- Sparite le entry mensa? (o bianco su bianco)
 
 DONE
 - Rifiutologo
@@ -17,6 +16,7 @@ MASTER
 - upload
 
 AESTHETICS
+- evidenzia giorno corrente
 - dimensioni
 - sfondi e linee
 - colore testo dinamico in base allo sfondo
