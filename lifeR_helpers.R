@@ -124,6 +124,8 @@ table_prepare <- function(
   , righe_tabella = 20
   , tbl_width = 1.5
   , tbl_height = .15
+  , oggi =  giorno
+  , sfondo_oggi = "ivory2"
 ){
   days_start <- inizio_settimana + (w - 1) * 7
   days_end <- days_start + 6
@@ -151,6 +153,11 @@ table_prepare <- function(
     width(width = tbl_width) %>% 
     height(height = tbl_height) #%>% 
     # hrule(rule = "exact")
+  
+  if(w == 1){
+    flextbl <- flextbl %>% 
+      bg(j = wday(oggi), bg = sfondo_oggi, part = "all")
+  }
   
   if(nrow(celle_con_solo_testo) > 0){
     celle_da_unire <- celle_con_solo_testo %>% 
