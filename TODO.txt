@@ -19,7 +19,6 @@ AESTHETICS
 - colore testo dinamico in base allo sfondo
 
 FUNCTIONALITY
-- auto refresh
 - all page canvas
 - canvas sensibilita solo a penna
 - password?
