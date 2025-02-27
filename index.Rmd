@@ -12,18 +12,44 @@ output: html_document
 Ultimo aggiornamento: `r format(now("CET"), "%d %B %Y %H:%M")`
 
 ```{=html}
+<div style="display: flex; gap: 20px; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">
+  <p id="clock-bologna"></p>
+  <p id="clock-cleveland"></p>
+  <p id="clock-goodyear"></p>
+</div>
+
 <script>
   // Refresh page every hour (3600000 ms)
   setTimeout(function () {
     location.reload();
   }, 3600000);
   
-function updateClock() {
-  var now = new Date();
-  var hours = now.getHours().toString().padStart(2, '0');
-  var minutes = now.getMinutes().toString().padStart(2, '0');
-  document.getElementById('clock').innerHTML = hours + ":" + minutes;
-}
+  function getOffsetForTimeZone(timezone) {
+    const now = new Date();
+    const timeZoneDate = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
+    return timeZoneDate.getHours() - now.getUTCHours();
+  }
+
+  function updateClocks() {
+    let now = new Date();
+
+    let timeZones = {
+      "clock-bologna": { name: "Bologna", offset: getOffsetForTimeZone("Europe/Rome") },
+      "clock-cleveland": { name: "Cleveland", offset: getOffsetForTimeZone("America/New_York") },
+      "clock-goodyear": { name: "Goodyear", offset: -7 } // Arizona stays at UTC-7
+    };
+
+    for (let id in timeZones) {
+      let localTime = new Date(now.getTime() + timeZones[id].offset * 3600 * 1000);
+      let hours = localTime.getUTCHours().toString().padStart(2, "0");
+      let minutes = localTime.getUTCMinutes().toString().padStart(2, "0");
+      
+      document.getElementById(id).textContent = `${timeZones[id].name}: ${hours}:${minutes}`;
+    }
+  }
+  
+  setInterval(updateClocks, 1000);
+  updateClocks(); // Run immediately on page load
 setInterval(updateClock, 1000);
 </script>
 ```
