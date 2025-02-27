@@ -9,16 +9,18 @@ DONE
 TODO
 - Lista spesa
 - Meteo
+- Minor?
 
 MASTER
-- run modules
-- print pdf
-- upload
 
 AESTHETICS
 - evidenzia giorno corrente
 - dimensioni
 - sfondi e linee
 - colore testo dinamico in base allo sfondo
+
+FUNCTIONALITY
+- auto refresh
+- all page canvas
 
 REWORK
