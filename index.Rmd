@@ -13,6 +13,11 @@ Ultimo aggiornamento: `r format(now("CET"), "%d %B %Y %H:%M")`
 
 ```{=html}
 <script>
+  // Refresh page every hour (3600000 ms)
+  setTimeout(function () {
+    location.reload();
+  }, 3600000);
+  
 function updateClock() {
   var now = new Date();
   var hours = now.getHours().toString().padStart(2, '0');
