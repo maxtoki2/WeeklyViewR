@@ -1,4 +1,5 @@
 BUGs
+- Orario appuntamenti sull'ora GMT
 
 DONE
 - Rifiutologo
