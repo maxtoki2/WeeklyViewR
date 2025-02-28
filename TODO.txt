@@ -15,7 +15,6 @@ TODO
 MASTER
 
 AESTHETICS
-- orologi altre time zone
 - colore testo dinamico in base allo sfondo
 
 FUNCTIONALITY
