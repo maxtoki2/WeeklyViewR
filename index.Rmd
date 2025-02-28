@@ -91,6 +91,7 @@ tables[[2]]
   var canvas = document.getElementById("drawingCanvas");
   var ctx = canvas.getContext("2d");
   var drawing = false;
+  var erasing = false;
 
   function getMousePos(event) {
     var rect = canvas.getBoundingClientRect();
@@ -101,7 +102,11 @@ tables[[2]]
   }
 
   function startDraw(event) {
+    // Allow only mouse or stylus (ignore finger touches)
+    if (event.pointerType === "touch") return;
+
     drawing = true;
+    erasing = event.buttons === 32; // Check if stylus eraser button is pressed
     var pos = getMousePos(event);
     ctx.beginPath();
     ctx.moveTo(pos.x, pos.y);
@@ -112,7 +117,7 @@ tables[[2]]
     if (!drawing) return;
     var pos = getMousePos(event);
     ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle = "black"; 
+    ctx.strokeStyle = erasing ? "white" : "black"; // Erase if using stylus button
     ctx.lineWidth = 2;
     ctx.stroke();
     event.preventDefault();
@@ -148,20 +153,10 @@ tables[[2]]
   // Load canvas on page load
   window.onload = loadCanvas;
 
-  // Mouse Events
-  canvas.addEventListener("mousedown", startDraw);
-  canvas.addEventListener("mousemove", draw);
-  canvas.addEventListener("mouseup", stopDraw);
-  canvas.addEventListener("mouseout", stopDraw);
+  // Pointer Events (for both mouse and stylus)
+  canvas.addEventListener("pointerdown", startDraw);
+  canvas.addEventListener("pointermove", draw);
+  canvas.addEventListener("pointerup", stopDraw);
+  canvas.addEventListener("pointerout", stopDraw);
 
-  // Touch Events (for stylus or touchscreen)
-  canvas.addEventListener("touchstart", function(event) {
-    startDraw(event.touches[0]);
-  });
-
-  canvas.addEventListener("touchmove", function(event) {
-    draw(event.touches[0]);
-  });
-
-  canvas.addEventListener("touchend", stopDraw);
 </script>
