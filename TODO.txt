@@ -24,3 +24,6 @@ FUNCTIONALITY
 - password?
 
 REWORK
+
+CLEANING
+- cancella vecchie settimane rusco

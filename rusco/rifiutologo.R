@@ -13,7 +13,7 @@ get_calendar <- function(
   payload <- list(
     url = payload_url
     , type = "GET"
-    , parameters = glue('{"idComune":{{id_comune}},"idIndirizzo":{{id_indirizzo}},"idCivico":{{id_civico}},"isBusiness":"0","date":"{{formatted_date}}","giorniDaMostrare":{{giorni}}}', .open = "{{")
+    , parameters = glue('{"idComune":<<id_comune>>,"idIndirizzo":<<id_indirizzo>>,"idCivico":<<id_civico>>,"isBusiness":"0","date":"<<formatted_date>>","giorniDaMostrare":<<giorni>>}', .open = "<<", .close = ">>")
   )  
   
   # Send the POST request with extra headers
