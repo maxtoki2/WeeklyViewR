@@ -43,6 +43,9 @@ jobs:
         run: |
           Rscript -e 'install.packages(c("tidyr", "dplyr", "lubridate", "glue", "stringr", "httr", "jsonlite", "flextable", "calendar", "DescTools", "rmarkdown", "knitr", "kableExtra", "curl", "rsvg", "magick"))'
 
+      - name: Set Time Zone
+        run: echo "TZ=Europe/Rome" >> $GITHUB_ENV
+
       - name: Run R script
         env:
           GCAL_FAMIGLIA: ${{ secrets.GCAL_FAMIGLIA }}
