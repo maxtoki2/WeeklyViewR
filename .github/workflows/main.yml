@@ -51,6 +51,7 @@ jobs:
           GCAL_FAMIGLIA: ${{ secrets.GCAL_FAMIGLIA }}
           ID_INDIRIZZO: ${{ secrets.ID_INDIRIZZO }}
           ID_CIVICO: ${{ secrets.ID_CIVICO }}
+          WVR_AUTHORIZED_DEVICES : ${{ secrets.WVR_AUTHORIZED_DEVICES }}
           LANG: it_IT.UTF-8
           LC_ALL: it_IT.UTF-8
         run: |
