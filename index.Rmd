@@ -24,16 +24,20 @@ Ultimo aggiornamento: `r format(now("CET"), "%d %B %Y %H:%M")`
 </div>
 
 <script>
-  // Fingerprint
+  // Get authorized IDs from R (Injected by GitHub Actions)
+  const authorizedIds = [`r paste0('"', gsub(",", '","', Sys.getenv("WVR_AUTHORIZED_DEVICES")), '"')`];
+
+    // Load FingerprintJS
   FingerprintJS.load().then(fp => {
-        return fp.get();
-    }).then(result => {
-        document.getElementById("fingerprint").textContent = result.visitorId;
-        console.log("Fingerprint:", result.visitorId);
-    }).catch(error => {
-        console.error("FingerprintJS failed:", error);
-        document.getElementById("fingerprint").textContent = "Fingerprinting failed.";
+    fp.get().then(result => {
+      const fingerprint = result.visitorId;
+      document.getElementById("fingerprint").textContent = "Your ID: " + fingerprint;
+
+      if (!authorizedIds.includes(fingerprint)) {
+        window.location.href = "unauthorized.html";
+      }
     });
+  });
 
   // Refresh page every hour (3600000 ms)
   setTimeout(function () {
