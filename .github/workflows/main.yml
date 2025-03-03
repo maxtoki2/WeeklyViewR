@@ -41,7 +41,7 @@ jobs:
 
       - name: Install main dependencies
         run: |
-          Rscript -e 'install.packages(c("tidyr", "dplyr", "lubridate", "glue", "stringr", "httr", "jsonlite", "flextable", "calendar", "DescTools", "rmarkdown", "knitr", "kableExtra", "curl", "magick"))'
+          Rscript -e 'install.packages(c("tidyr", "dplyr", "lubridate", "glue", "stringr", "httr", "jsonlite", "flextable", "calendar", "DescTools", "rmarkdown", "knitr", "kableExtra", "curl", "rsvg", "magick"))'
 
       - name: Run R script
         env:
