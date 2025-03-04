@@ -1,5 +1,4 @@
 BUGs
-- Orario appuntamenti sull'ora GMT
 
 DONE
 - Rifiutologo
@@ -9,7 +8,7 @@ DONE
 
 TODO
 - Lista spesa
-- Meteo
+- Meteo (https://stackoverflow.com/questions/73195711/how-to-get-a-day-weather-forecast-for-a-list-of-cities-using-r)
 - Minor?
 - Festivita
 
@@ -20,8 +19,6 @@ AESTHETICS
 
 FUNCTIONALITY
 - all page canvas
-- canvas sensibilita solo a penna
-- password?
 
 REWORK
 
