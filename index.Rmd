@@ -12,10 +12,9 @@ output: html_document
 <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 
 
-Ultimo aggiornamento: `r format(now("CET"), "%d %B %Y %H:%M")`
+ <font size="1">Ultimo aggiornamento: `r format(now("CET"), "%d %B %Y %H:%M")`</font>
 
 ```{=html}
-<p id="fingerprint">Loading...</p>
 
 <div style="display: flex; gap: 20px; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">
   <p id="clock-bologna"></p>
@@ -31,7 +30,6 @@ Ultimo aggiornamento: `r format(now("CET"), "%d %B %Y %H:%M")`
   FingerprintJS.load().then(fp => {
     fp.get().then(result => {
       const fingerprint = result.visitorId;
-      document.getElementById("fingerprint").textContent = "Your ID: " + fingerprint;
 
       if (!authorizedIds.includes(fingerprint)) {
         window.location.href = "unauthorized.html";
