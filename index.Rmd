@@ -100,12 +100,16 @@ tables[[2]]
 
 ```
 
-## Note
+#
 
-<canvas id="drawingCanvas" width="400" height="300" 
-        style="border:2px solid black; touch-action: none;"></canvas>
-<br>
-<button onclick="clearCanvas()">Clear</button>
+<b>Note</b>
+
+```{=html}
+<div style="display: flex; align-items: flex-start; gap: 10px;">
+    <canvas id="drawingCanvas" width="800" height="300" 
+            style="border:2px solid black; touch-action: none;"></canvas>
+    <button onclick="clearCanvas()">Clear</button>
+</div>
 
 <script>
   var canvas = document.getElementById("drawingCanvas");
@@ -180,3 +184,4 @@ tables[[2]]
   canvas.addEventListener("pointerout", stopDraw);
 
 </script>
+```
