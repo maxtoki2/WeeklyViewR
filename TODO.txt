@@ -16,6 +16,7 @@ MASTER
 
 AESTHETICS
 - colore testo dinamico in base allo sfondo
+- spostare orologi nella zona inutilizzata in basso a dx della tabella.
 
 FUNCTIONALITY
 - all page canvas
