@@ -17,9 +17,9 @@ library(DescTools)
 source("lifeR_helpers.R")
 
 param_giorni <- 14
-param_url_mensa <- "https://www.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
+param_url_mensa <- "http://www2.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
 param_inzio_periodo_mensa <- "21-10-2024" # TODO: possibly infer from file
-param_fine_periodo_mensa <- "07-03-2025" # TODO: possibly infer from file
+param_fine_periodo_mensa <- "19-04-2025" # TODO: possibly infer from file
 
 secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
 secr_id_indirizzo <- Sys.getenv("ID_INDIRIZZO")
