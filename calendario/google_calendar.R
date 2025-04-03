@@ -10,7 +10,7 @@ get_calendars <- function(
     select(DTSTART, `DTSTART;VALUE=DATE`, SUMMARY, gruppo) %>% 
     mutate(datetime = coalesce(`DTSTART;VALUE=DATE`, DTSTART)) %>%  #floor_date(DTSTART, "day") %>% 
     arrange(datetime) %>% 
-    mutate(data = as.Date(floor_date(datetime))) %>% 
+    mutate(data = as_date(floor_date(datetime))) %>% 
     mutate(ora = format(datetime, "%H:%M")) %>% 
     mutate(ora_txt = ifelse(ora == "00:00", "-", ora)) %>% 
     mutate(flag_flights = identify_flight_entries(SUMMARY)) %>% 
