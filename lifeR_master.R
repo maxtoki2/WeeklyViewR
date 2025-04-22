@@ -171,3 +171,4 @@ tables <- lapply(1:2, function(w) table_prepare(tutto, w))
 # TODO: knit
 rmarkdown::render("index.Rmd")
 
+
