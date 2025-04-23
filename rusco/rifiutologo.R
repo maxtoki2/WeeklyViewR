@@ -17,29 +17,44 @@ get_calendar <- function(
   )  
   
   # Send the POST request with extra headers
-  response <- POST(
-    url,
-    body = payload,
-    encode = "form",  # Adjust as needed (form if form data, json if raw JSON is expected)
-    add_headers(
-      `User-Agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",  # Pretend to be a browser
-      `Referer` = "https://www.ilrifiutologo.it/casa_rifiutologo/",  # Referrer from where the request is made
-      `Origin` = "https://www.ilrifiutologo.it",  # Add the origin header
-      `Accept` = "application/json",  # Request JSON response
-      `Content-Type` = "application/x-www-form-urlencoded"  # Ensure correct content-type
+  page_status <- -1
+  attempts_counter <- 0
+  while(page_status != 200 & attempts_counter < 5){
+    response <- POST(
+      url,
+      body = payload,
+      encode = "form",  # Adjust as needed (form if form data, json if raw JSON is expected)
+      add_headers(
+        `User-Agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",  # Pretend to be a browser
+        `Referer` = "https://www.ilrifiutologo.it/casa_rifiutologo/",  # Referrer from where the request is made
+        `Origin` = "https://www.ilrifiutologo.it",  # Add the origin header
+        `Accept` = "application/json",  # Request JSON response
+        `Content-Type` = "application/x-www-form-urlencoded"  # Ensure correct content-type
+      )
     )
-  )
+    page_status <- response$status_code
+    attempts_counter <- attempts_counter + 1
+    if(page_status != 200) Sys.sleep(10)
+  }
   
   response_content <- content(response, "text")
-  parsed_content <- fromJSON(response_content)$calendario
-  formatted_content <- parsed_content %>% 
-    #filter(week(data) == week(giorno)) %>% 
-    unnest(conferimenti) %>% 
-    mutate(data = as.Date(data)) %>% 
-    select(data, macroprodotto) %>% 
-    unnest(macroprodotto) %>% 
-    unnest(pittogramma) %>% 
-    mutate(testo_immagine = str_extract(descrizione, "^[A-Za-z]+"))
+  if(page_status == 200){
+    parsed_content <- fromJSON(response_content)$calendario
+    formatted_content <- parsed_content %>% 
+      #filter(week(data) == week(giorno)) %>% 
+      unnest(conferimenti) %>% 
+      mutate(data = as.Date(data)) %>% 
+      select(data, macroprodotto) %>% 
+      unnest(macroprodotto) %>% 
+      unnest(pittogramma) %>% 
+      mutate(testo_immagine = str_extract(descrizione, "^[A-Za-z]+"))  
+  } else {
+    formatted_content <- structure(list(data = structure(numeric(0), class = "Date"), 
+                                        id = integer(0), descrizione = character(0), nomeFile = character(0), 
+                                        colore = character(0), testo_immagine = character(0)), row.names = integer(0), class = c("tbl_df", 
+                                                                                                                                 "tbl", "data.frame"))
+  }
+  
   formatted_content
 }
 
