@@ -1,3 +1,5 @@
+print("preparation")
+
 options("lubridate.week.start" = 1)
 Sys.setlocale("LC_ALL", "it_IT.UTF-8")
 
@@ -61,6 +63,7 @@ assign_cell <- . %>%
 #########
 # rifiuti
 #########
+print("rifiuti")
 source("rusco/rifiutologo.R")
 baseurl_immagini_rusco <- "https://webapp-ambiente.gruppohera.it/assets/images/pictograms/"
 filext_rusco <- "png"
@@ -94,6 +97,7 @@ rusco <- rusco %>%
 ##############
 # mensa scuola
 ##############
+print("mensa")
 source("mensa/mensa_scuola.R")
 folder_mensa <- "mensa/saved"
 file_mensa <- glue("mensa{param_inzio_periodo_mensa}_{param_fine_periodo_mensa}.RDS")
@@ -111,6 +115,7 @@ mensa <- mensa_periodo %>%
 ############
 # calendario
 ############
+print("calendario")
 source("calendario/google_calendar.R")
 calendario_completo <- get_calendars(param_calendari)
 calendario <- calendario_completo %>% 
@@ -123,6 +128,7 @@ calendario <- calendario_completo %>%
 ############
 # mlb
 ############
+print("mlb")
 source("mlb/mlb.R")
 baseurl_mlb_logo <- "https://www.mlbstatic.com/team-logos"
 orig_filext_mlb <- "svg"
@@ -156,7 +162,7 @@ if(!is.null(mlb_periodo)){
   mlb <- NULL
 }
 
-  
+print("rendering tabelle")  
 # TODO: formatta
 tutto <- bind_rows(
   rusco
