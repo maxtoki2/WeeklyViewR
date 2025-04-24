@@ -55,8 +55,28 @@ jobs:
           LANG: it_IT.UTF-8
           LC_ALL: it_IT.UTF-8
         run: |
-          Rscript lifeR_master.R
-
+          RUN_ID=$(date +"%Y-%m-%d_%H-%M-%S")_run-${{ github.run_number }}
+          LOGFILE=logs/log_$RUN_ID.txt
+          echo "Starting R run: $RUN_ID" | tee $LOGFILE
+          echo "GitHub SHA: ${{ github.sha }}" | tee -a $LOGFILE
+          echo "Triggered by: ${{ github.event_name }}" | tee -a $LOGFILE
+          echo "-----------------------------------" | tee -a $LOGFILE
+          Rscript lifeR_master.R >> $LOGFILE 2>&1
+          echo "Finished R run: $RUN_ID" | tee -a $LOGFILE
+          echo "LOGFILE=$LOGFILE" >> $GITHUB_ENV
+          
+      - name: Commit and push R log
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add $LOGFILE
+          git commit -m "Add run log: $LOGFILE" || echo "No log changes to commit"
+          git push
+          
+      - name: Prune old logs (optional)
+        run: |
+          find logs/ -type f -mtime +7 -name 'log_*.txt' -delete
+          
       - name: Commit and push updated index.html
         run: |
           git config --global user.name "github-actions[bot]"
