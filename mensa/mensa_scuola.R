@@ -2,7 +2,7 @@ get_menu <- function(
   date_from = "21-10-2024"
   , date_to = "07-03-2025"
   , pdf_url = "https://www.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
-  , table_width = 2400
+  , table_width = 2700
 ){
   menu <- image_read_pdf(pdf_url)
   
@@ -28,8 +28,8 @@ get_menu <- function(
   
   # weekdays and dates columns to infer table position and dimensions
   days_col <- ocr_info %>% filter(word %in% c("LUN","MAR", "MER", "GIO", "VEN"))
-  table_top <- min(days_col$bb_ystart)
-  table_bottom <- max(days_col$bb_yend)
+  table_top <- ocr_info %>% filter(word == "Giorni") %>% select(bb_yend) %>% unlist # min(days_col$bb_ystart)
+  table_bottom <- ocr_info %>% filter(word == "completamento") %>% select(bb_ystart) %>% unlist #max(days_col$bb_yend)
   table_height <- plyr::round_any(table_bottom - table_top, 50, ceiling)
 
   dates_col <- ocr_info %>% 
