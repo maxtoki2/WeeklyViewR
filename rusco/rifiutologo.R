@@ -38,7 +38,7 @@ get_calendar <- function(
   }
   
   response_content <- content(response, "text")
-  if(page_status == 200){
+  if(page_status == 200 & response_content != ""){
     parsed_content <- fromJSON(response_content)$calendario
     formatted_content <- parsed_content %>% 
       #filter(week(data) == week(giorno)) %>% 
