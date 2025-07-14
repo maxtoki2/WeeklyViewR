@@ -221,3 +221,9 @@ table_prepare <- function(
 }
 
 # tables[[1]] %>% compose(i = 1:3, j = 1, value = as_paragraph(as_image("rusco/saved/img6649.png", width = .4, height = .4), as_image("rusco/saved/img7653.png", width = .4, height = .4), " ", as_chunk("test", props = fp_text_default(color = "white"))), part = "body") %>% bg(i = 1:3, j = 1, bg = "black")
+
+numero_giorno_sett <- function(giorno){
+  sapply(giorno, function(g){
+    which(levels(wday(1:7, label = T, abbr = F)) == tolower(g))   
+  })
+} 
