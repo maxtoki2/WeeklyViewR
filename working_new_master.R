@@ -29,12 +29,12 @@ param_fine_periodo_mensa <- "29-08-2025" # TODO: possibly infer from file
 param_id_medici <- c(11047,16724,12418)
 
 param_info <- tribble(
-  ~gruppo, ~tabella
-  , "rusco", "main"
-  , "calendario", "main" # DEBUG: pulldata assegna "famiglia"
-  , "mlb", "main"
-  , "mensa", "mensa"
-  , "medici", "main"
+  ~gruppo, ~tabella, ~riga1, ~weekend_offset, ~font_size
+  , "rusco", "main", 16, 8, 10
+  , "calendario", "main", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
+  , "mlb", "main", 19, 9, 10
+  , "mensa", "mensa", 4, 0, 8
+  , "medici", "main", 10, 0, 8
 )
 
 secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
@@ -57,7 +57,14 @@ lista_dati <- lapply(1:nrow(param_info), function(i){
   # TODO: sposta print() qui
   
   source(glue("{topic}/{topic}_pulldata.R"))
-  get(topic)
+  get(topic) %>% assign_cell()
 })
 
-dati <- bind_rows(lista_dati)
+dati <- bind_rows(lista_dati) %>% 
+  mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) # TODO: address elsewhere
+
+lapply(1:2, function(w){
+  lapply(unique(param_info$tabella), function(tab){
+    dati %>% filter(tabella == tab) %>% table_prepare(w)
+  })
+}) -> tabelle_formattate

@@ -164,15 +164,17 @@ table_prepare <- function(
       group_by(colonna, gruppo) %>% 
       summarise(
         riga_inizio = min(riga)
-        #, riga_fine = max(riga)
+        , riga_fine = max(riga)
         , testo_unito = paste(descrizione, collapse = "|")
       ) %>% 
-      cross_join(param_celle %>% select(riga1) %>% mutate(riga_fine = riga1 - 1)) %>% 
+      # cross_join(param_info %>% select(riga1) %>% mutate(riga_fine = riga1 - 1)) %>% # TODO: scope of param_info
       filter(riga_fine > riga_inizio) %>% 
       group_by(colonna, riga_inizio) %>% 
       slice_min(riga_fine) %>% 
       ungroup() %>% 
-      select(-gruppo, -riga1)
+      # select(-gruppo, -riga1)
+      select(-gruppo)
+      
     for(i in 1:nrow(celle_da_unire)){
       colonna <- celle_da_unire$colonna[i]
       righe <- celle_da_unire$riga_inizio[i]:celle_da_unire$riga_fine[i]
@@ -195,20 +197,21 @@ table_prepare <- function(
     }  
   }
   
-  
-  for(i in 1:nrow(celle_con_testo_immagine)){
-    riga <- celle_con_testo_immagine[i,]
-    cell_bg <- paste0("#", riga$colore)
-    cell_txt_col <- TextContrastColor(cell_bg)
-    flextbl <- flextbl %>% 
-      compose(i = riga$riga, j = riga$colonna, value = as_paragraph(
-        as_image(riga$immagine, width = .4, height = .4) # TODO: parametrize w/h
-        , " "
-        , as_chunk(riga$testo_immagine, props = fp_text_default(color = cell_txt_col, font.size = 8))) # TODO: parametrize size and pick text color based on background (DescTools::TextContrastColor)
-        , part = "body"
-      ) %>% 
-      # valign(j = 2, valign = "center") %>% 
-      bg(i = riga$riga, j = riga$colonna, bg = cell_bg)
+  if(nrow(celle_con_testo_immagine) > 0){
+    for(i in 1:nrow(celle_con_testo_immagine)){
+      riga <- celle_con_testo_immagine[i,]
+      cell_bg <- paste0("#", riga$colore)
+      cell_txt_col <- TextContrastColor(cell_bg)
+      flextbl <- flextbl %>% 
+        compose(i = riga$riga, j = riga$colonna, value = as_paragraph(
+          as_image(riga$immagine, width = .4, height = .4) # TODO: parametrize w/h
+          , " "
+          , as_chunk(riga$testo_immagine, props = fp_text_default(color = cell_txt_col, font.size = 8))) # TODO: parametrize size and pick text color based on background (DescTools::TextContrastColor)
+          , part = "body"
+        ) %>% 
+        # valign(j = 2, valign = "center") %>% 
+        bg(i = riga$riga, j = riga$colonna, bg = cell_bg)
+    }  
   }
   
   for(i in 1:nrow(tutto1)){
@@ -226,4 +229,19 @@ numero_giorno_sett <- function(giorno){
   sapply(giorno, function(g){
     which(levels(wday(1:7, label = T, abbr = F)) == tolower(g))   
   })
-} 
+}
+
+assign_cell <- . %>%
+  group_by(data) %>% 
+  mutate(col_group = row_number()) %>% 
+  ungroup() %>% 
+  inner_join(param_info, by = "gruppo") %>% 
+  mutate(
+    pagina = isoweek(data) - isoweek(inizio_settimana) + 1
+    , colonna = wday(data, week_start = 1)
+    , riga = riga1 - 1 + col_group
+  ) %>% 
+  mutate(
+    riga = pmax(1, riga - ifelse(wday(data) > 5, weekend_offset, 0))
+  ) %>% 
+  select(any_of(c("pagina", "tabella", "riga", "colonna", "descrizione", "gruppo", "immagine", "colore", "testo_immagine", "font_size"))) #names(param_celle)[4:ncol(param_celle)]
