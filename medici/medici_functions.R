@@ -69,7 +69,7 @@ orari_medici <- function(
   
   schedules %>% 
     bind_rows() %>% 
-    mutate(medico = name, abbr = substr(name, 1, 3)) %>% 
+    mutate(medico = name, abbr = substr(name, 1, 8)) %>% 
     mutate(hours = str_remove(hours, "Su Appuntamento")) %>% 
     mutate(principale = str_detect(address, studio_princ))
 }
