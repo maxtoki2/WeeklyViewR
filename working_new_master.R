@@ -34,7 +34,7 @@ param_info <- tribble(
   , "calendario", "main", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
   , "mlb", "main", 19, 9, 10
   , "mensa", "mensa", 4, 0, 8
-  , "medici", "main", 10, 0, 8
+  , "medici", "medici", 2, 0, 8
 )
 
 secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
@@ -63,8 +63,14 @@ lista_dati <- lapply(1:nrow(param_info), function(i){
 dati <- bind_rows(lista_dati) %>% 
   mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) # TODO: address elsewhere
 
+tabelle <- unique(param_info$tabella)  
+
 lapply(1:2, function(w){
-  lapply(unique(param_info$tabella), function(tab){
+  week_tabs <- lapply(tabelle, function(tab){
     dati %>% filter(tabella == tab) %>% table_prepare(w)
   })
+  names(week_tabs) <- tabelle
+  week_tabs
 }) -> tabelle_formattate
+
+rmarkdown::render("index.Rmd")

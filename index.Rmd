@@ -82,19 +82,28 @@ library(kableExtra)
 
 ##  {.tabset}
 
-### Corrente
+### Corrente {.tabset}
 
-```{r, echo=FALSE, ft.arraystretch = 1}
+```{r, echo=FALSE, ft.arraystretch = 1, results='asis'}
 set_flextable_defaults(fonts_ignore=TRUE)
-tables[[1]]
+
+for(i in names(tabelle_formattate[[1]])){
+  cat(paste0("#### ", i, "\n\n"))
+  print(tabelle_formattate[[1]][[i]])
+  cat("\n\n")
+}
 
 ```
 
-### Prossima
+### Prossima {.tabset}
 
-```{r, echo=FALSE, ft.arraystretch = 1}
+```{r, echo=FALSE, ft.arraystretch = 1, results='asis'}
 
-tables[[2]]
+for(i in names(tabelle_formattate[[2]])){
+  cat(paste0("#### ", i, "\n\n"))
+  print(tabelle_formattate[[2]][[i]])
+  cat("\n\n")
+}
 
 ```
 
