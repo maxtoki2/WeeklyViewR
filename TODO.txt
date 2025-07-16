@@ -1,20 +1,17 @@
 BUGs
 
-DONE
-- Rifiutologo
-- Menu scuola (https://chatgpt.com/share/66fe9531-9494-800c-857d-593897e57dca)
-- Calendari
-- MLB
-
 TODO
 - Lista spesa
 - Meteo (https://stackoverflow.com/questions/73195711/how-to-get-a-day-weather-forecast-for-a-list-of-cities-using-r)
-- Minor?
+- Minor
 - Festivita
+- Sport
 
 MASTER
 
 AESTHETICS
+- fontsize
+- grassetto (e.g. medici sasso vs borgonuovo)
 - colore testo dinamico in base allo sfondo
 - spostare orologi nella zona inutilizzata in basso a dx della tabella.
 

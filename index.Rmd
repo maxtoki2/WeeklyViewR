@@ -82,21 +82,48 @@ library(kableExtra)
 
 ##  {.tabset}
 
-### Corrente
+### Corrente {.tabset}
 
-```{r, echo=FALSE, ft.arraystretch = 1}
-set_flextable_defaults(fonts_ignore=TRUE)
-tables[[1]]
-
+```{r, echo=FALSE, results='asis'}
+for (i in seq_along(tabelle_formattate[[1]])) {
+  temp_file <- tempfile(fileext = ".Rmd")
+  tab_label <- names(tabelle_formattate[[1]])[i] #paste0("Tab ", i)
+  
+  cat(sprintf("#### %s\n\n", tab_label))
+  
+  cat(
+    knitr::knit_child(text = c(
+      "```{r, echo=FALSE, results='asis'}",
+      sprintf("ft <- tabelle_formattate[[1]][[%d]]", i),
+      "ft",
+      "```"
+    ), quiet = TRUE),
+    sep = "\n"
+  )
+}
 ```
 
-### Prossima
+### Prossima {.tabset}
 
-```{r, echo=FALSE, ft.arraystretch = 1}
-
-tables[[2]]
-
+```{r, echo=FALSE, results='asis'}
+for (i in seq_along(tabelle_formattate[[2]])) {
+  temp_file <- tempfile(fileext = ".Rmd")
+  tab_label <- names(tabelle_formattate[[2]])[i] #paste0("Tab ", i)
+  
+  cat(sprintf("#### %s\n\n", tab_label))
+  
+  cat(
+    knitr::knit_child(text = c(
+      "```{r, echo=FALSE, results='asis'}",
+      sprintf("ft <- tabelle_formattate[[2]][[%d]]", i),
+      "ft",
+      "```"
+    ), quiet = TRUE),
+    sep = "\n"
+  )
+}
 ```
+
 
 #
 
