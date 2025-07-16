@@ -1,0 +1,6 @@
+Starting R run: 2025-07-16_17-33-18_run-3140
+GitHub SHA: 1622b4e5b41818274803207006c5dffc1588a362
+Triggered by: workflow_dispatch
+-----------------------------------
+[1] "preparation"
+Finished R run: 2025-07-16_17-33-18_run-3140
