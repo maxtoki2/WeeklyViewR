@@ -61,7 +61,7 @@ jobs:
           echo "GitHub SHA: ${{ github.sha }}" | tee -a $LOGFILE
           echo "Triggered by: ${{ github.event_name }}" | tee -a $LOGFILE
           echo "-----------------------------------" | tee -a $LOGFILE
-          Rscript test.R >> $LOGFILE 2>&1
+          Rscript lifeR_master.R >> $LOGFILE 2>&1
           echo "Finished R run: $RUN_ID" | tee -a $LOGFILE
           echo "LOGFILE=$LOGFILE" >> $GITHUB_ENV
           
