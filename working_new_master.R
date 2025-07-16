@@ -30,9 +30,9 @@ param_id_medici <- c(11047,16724,12418)
 
 param_info <- tribble(
   ~gruppo, ~tabella, ~riga1, ~weekend_offset, ~font_size
-  , "rusco", "main", 16, 8, 10
-  , "calendario", "main", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
-  , "mlb", "main", 19, 9, 10
+  , "rusco", "generale", 16, 8, 10
+  , "calendario", "generale", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
+  , "mlb", "generale", 19, 9, 10
   , "mensa", "mensa", 4, 0, 8
   , "medici", "medici", 2, 0, 8
 )
