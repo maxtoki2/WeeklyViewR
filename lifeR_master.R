@@ -1,23 +1,22 @@
 print("preparation")
 
-# options("lubridate.week.start" = 1)
-# Sys.setlocale("LC_ALL", "it_IT.UTF-8")
-# 
-# # master
-# library(magick)
-# library(tidyr)
-# library(dplyr)
-# library(lubridate)
-# library(glue)
-# library(stringr)
-# library(httr)
-# library(jsonlite)
-# library(calendar)
-# library(flextable)
-# library(DescTools)
-# library(httr)
-# library(rvest)
-# 
+options("lubridate.week.start" = 1)
+Sys.setlocale("LC_ALL", "it_IT.UTF-8")
+
+# master
+library(magick)
+library(tidyr)
+library(dplyr)
+library(lubridate)
+library(glue)
+library(stringr)
+library(httr)
+library(jsonlite)
+library(calendar)
+library(flextable)
+library(DescTools)
+library(rvest)
+
 # source("lifeR_helpers.R")
 # 
 # param_giorni <- 14
