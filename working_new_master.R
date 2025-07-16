@@ -57,11 +57,12 @@ lista_dati <- lapply(1:nrow(param_info), function(i){
   # TODO: sposta print() qui
   
   source(glue("{topic}/{topic}_pulldata.R"))
-  get(topic) %>% assign_cell()
+  get(topic) %>% 
+    mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere 
+    assign_cell()
 })
 
-dati <- bind_rows(lista_dati) %>% 
-  mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) # TODO: address elsewhere
+dati <- bind_rows(lista_dati)
 
 tabelle <- unique(param_info$tabella)  
 
