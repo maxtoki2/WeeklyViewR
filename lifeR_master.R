@@ -1,4 +1,4 @@
-print("preparation")
+cat("preparation")
 
 options("lubridate.week.start" = 1)
 Sys.setlocale("LC_ALL", "it_IT.UTF-8")
@@ -17,7 +17,7 @@ library(flextable)
 library(DescTools)
 library(rvest)
 
-# source("lifeR_helpers.R")
+source("lifeR_helpers.R")
 # 
 # param_giorni <- 14
 # 
