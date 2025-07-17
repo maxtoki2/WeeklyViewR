@@ -51,7 +51,7 @@ inizio_settimana <- ymd(floor_date(giorno, "week"))
 periodo <- ymd(seq(inizio_settimana, by = "1 day", length.out = param_giorni))
 
 # scarica dati
-lista_dati <- lapply(1:nrow(param_info), function(i){
+lista_dati <- lapply(1:nrow(param_info)[1], function(i){
   topic <- param_info$gruppo[i]
   # TODO: sposta print() qui
 
