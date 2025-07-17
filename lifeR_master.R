@@ -50,16 +50,16 @@ giorno <- today()
 inizio_settimana <- ymd(floor_date(giorno, "week"))
 periodo <- ymd(seq(inizio_settimana, by = "1 day", length.out = param_giorni))
 
-# # scarica dati
-# lista_dati <- lapply(1:nrow(param_info), function(i){
-#   topic <- param_info$gruppo[i]
-#   # TODO: sposta print() qui
-# 
-#   source(glue("{topic}/{topic}_pulldata.R"))
-#   get(topic) %>%
-#     mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
-#     assign_cell()
-# })
+# scarica dati
+lista_dati <- lapply(1:nrow(param_info), function(i){
+  topic <- param_info$gruppo[i]
+  # TODO: sposta print() qui
+
+  source(glue("{topic}/{topic}_pulldata.R"))
+  get(topic) %>%
+    mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
+    assign_cell()
+})
 # 
 # dati <- bind_rows(lista_dati)
 # 
