@@ -33,7 +33,7 @@ param_info <- tribble(
   , "calendario", "generale", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
   , "mlb", "generale", 19, 9, 10
   , "mensa", "mensa", 4, 0, 8
-  # , "medici", "medici", 2, 0, 8
+  , "medici", "medici", 2, 0, 8
 )
 
 secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
@@ -50,27 +50,27 @@ giorno <- today()
 inizio_settimana <- ymd(floor_date(giorno, "week"))
 periodo <- ymd(seq(inizio_settimana, by = "1 day", length.out = param_giorni))
 
-# scarica dati
-lista_dati <- lapply(1:nrow(param_info), function(i){
-  topic <- param_info$gruppo[i]
-  # TODO: sposta print() qui
-
-  source(glue("{topic}/{topic}_pulldata.R"))
-  get(topic) %>%
-    mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
-    assign_cell()
-})
-
-dati <- bind_rows(lista_dati)
-
-tabelle <- unique(param_info$tabella)
-
-lapply(1:2, function(w){
-  week_tabs <- lapply(tabelle, function(tab){
-    dati %>% filter(tabella == tab) %>% table_prepare(w)
-  })
-  names(week_tabs) <- tabelle
-  week_tabs
-}) -> tabelle_formattate
-
-rmarkdown::render("index.Rmd")
+# # scarica dati
+# lista_dati <- lapply(1:nrow(param_info), function(i){
+#   topic <- param_info$gruppo[i]
+#   # TODO: sposta print() qui
+# 
+#   source(glue("{topic}/{topic}_pulldata.R"))
+#   get(topic) %>%
+#     mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
+#     assign_cell()
+# })
+# 
+# dati <- bind_rows(lista_dati)
+# 
+# tabelle <- unique(param_info$tabella)
+# 
+# lapply(1:2, function(w){
+#   week_tabs <- lapply(tabelle, function(tab){
+#     dati %>% filter(tabella == tab) %>% table_prepare(w)
+#   })
+#   names(week_tabs) <- tabelle
+#   week_tabs
+# }) -> tabelle_formattate
+# 
+# rmarkdown::render("index.Rmd")
