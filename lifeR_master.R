@@ -56,23 +56,13 @@ for(i in 1:nrow(param_info)){
   topic <- param_info$gruppo[i]
   # TODO: sposta print() qui
   
-  dati_el <- source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)$value  
+  dati_el <- source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)$value %>%
+    mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
+    assign_cell() 
   lista_dati <- c(lista_dati, list(dati_el))
 }
 
-
-# lista_dati <- lapply(1:nrow(param_info), function(i){
-#   topic <- param_info$gruppo[i]
-#   # TODO: sposta print() qui
-# 
-#   source(glue("{topic}/{topic}_pulldata.R"), local = TRUE) %>%
-#     mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
-#     assign_cell()
-# })
-
-dati <- bind_rows(lista_dati) %>%
-  mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
-  assign_cell()
+dati <- bind_rows(lista_dati)
 
 tabelle <- unique(param_info$tabella)
 
