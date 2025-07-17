@@ -34,3 +34,4 @@ if(!is.null(mlb_periodo)){
 } else {
   mlb <- NULL
 }
+mlb

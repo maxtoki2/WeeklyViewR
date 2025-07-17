@@ -30,3 +30,4 @@ rusco <- rusco %>%
   #add_image_column(filename_column = "nomeFile", filext_rusco, save_folder = folder_rusco, base_url = baseurl_immagini_rusco) %>% 
   mutate(immagine = as.character(glue("{folder_rusco}/{nomeFile}.{filext_rusco}")))# %>% 
   # assign_cell()
+rusco

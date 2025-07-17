@@ -14,4 +14,4 @@ medici <- lapply(param_id_medici, orari_medici) %>%
     , relationship = "many-to-many"
   ) %>% 
   mutate(descrizione = paste(abbr, hours, ifelse(principale, "Sasso", "Borgo"), " ", sep = "\n"))
-#
+medici

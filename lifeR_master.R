@@ -55,22 +55,21 @@ lista_dati <- lapply(1:nrow(param_info)[1], function(i){
   topic <- param_info$gruppo[i]
   # TODO: sposta print() qui
 
-  source(glue("{topic}/{topic}_pulldata.R"))
-  get(topic) %>%
+  source(glue("{topic}/{topic}_pulldata.R"), local = TRUE) %>%
     mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
     assign_cell()
 })
-# 
-# dati <- bind_rows(lista_dati)
-# 
-# tabelle <- unique(param_info$tabella)
-# 
-# lapply(1:2, function(w){
-#   week_tabs <- lapply(tabelle, function(tab){
-#     dati %>% filter(tabella == tab) %>% table_prepare(w)
-#   })
-#   names(week_tabs) <- tabelle
-#   week_tabs
-# }) -> tabelle_formattate
-# 
-# rmarkdown::render("index.Rmd")
+
+dati <- bind_rows(lista_dati)
+
+tabelle <- unique(param_info$tabella)
+
+lapply(1:2, function(w){
+  week_tabs <- lapply(tabelle, function(tab){
+    dati %>% filter(tabella == tab) %>% table_prepare(w)
+  })
+  names(week_tabs) <- tabelle
+  week_tabs
+}) -> tabelle_formattate
+
+rmarkdown::render("index.Rmd")

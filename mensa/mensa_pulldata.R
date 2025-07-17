@@ -15,3 +15,4 @@ mensa <- mensa_periodo %>%
   filter(data %in% periodo) %>% 
   mutate(gruppo = "mensa") #%>% 
   # assign_cell()
+mensa
