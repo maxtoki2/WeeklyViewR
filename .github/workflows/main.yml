@@ -47,6 +47,7 @@ jobs:
         run: echo "TZ=Europe/Rome" >> $GITHUB_ENV
 
       - name: Run R script
+        continue-on-error: true
         env:
           GCAL_FAMIGLIA: ${{ secrets.GCAL_FAMIGLIA }}
           ID_INDIRIZZO: ${{ secrets.ID_INDIRIZZO }}
@@ -61,7 +62,7 @@ jobs:
           echo "GitHub SHA: ${{ github.sha }}" | tee -a $LOGFILE
           echo "Triggered by: ${{ github.event_name }}" | tee -a $LOGFILE
           echo "-----------------------------------" | tee -a $LOGFILE
-          Rscript lifeR_master.R
+          Rscript lifeR_master.R >> $LOGFILE 2>&1
           echo "Finished R run: $RUN_ID" | tee -a $LOGFILE
           echo "LOGFILE=$LOGFILE" >> $GITHUB_ENV
           
