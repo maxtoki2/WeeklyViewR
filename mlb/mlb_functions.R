@@ -23,19 +23,20 @@ get_mlb_schedule <- function(
       unnest(home, names_sep = "_") %>% 
       unnest(away_team, names_sep = "_") %>% 
       unnest(home_team, names_sep = "_") %>% 
-      filter(home_team_id == team_id | away_team_id == team_id)
+      filter(home_team_id %in% team_id | away_team_id %in% team_id)
     
     parsed_games <- games %>% 
       mutate(data = ymd(substr(gameDate, 1, 10))) %>% 
-      mutate(home_game = home_team_id == team_id) %>% 
+      mutate(home_game = home_team_id %in% team_id) %>% 
       mutate(descrizione = ifelse(home_game, away_team_name, paste0("@ ", home_team_name))) %>% 
       mutate(opponent_id = ifelse(home_game, away_team_id, home_team_id)) %>% 
+      mutate(sel_team_id = ifelse(home_game, home_team_id, away_team_id)) %>% 
       mutate(
         datetime_parsed = ymd_hms(gameDate, tz = "US/Eastern"),  # Parse as US/Eastern time
         , orario = with_tz(datetime_parsed, tzone = timezone_display)  # Convert to Central Europe time
       ) %>% 
       arrange(orario) %>% 
-      select(data, descrizione, home_game, orario, opponent_id) %>% 
+      select(data, descrizione, home_game, orario, opponent_id, sel_team_id) %>% 
       mutate(testo_immagine = format(orario, "%H:%M")) %>% 
       mutate(colore = ifelse(home_game, home_bg, away_bg))
   } else {
