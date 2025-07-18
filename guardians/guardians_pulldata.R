@@ -14,9 +14,12 @@ if(file_cle %in% list.files(folder_cle)){
   cle_periodo <- get_mlb_schedule(inizio_settimana, param_giorni, c(114, 445, 402, 437, 481), base_url = "https://bdfed.stitch.mlbinfra.com/bdfed/transform-milb-schedule?stitch_env=prod&sortTemplate=5&sportId=11&&sportId=12&&sportId=13&&sportId=14&&sportId=16")
   saveRDS(cle_periodo, glue("{folder_cle}/{file_cle}"))  
 }
+if(exists("mlb_periodo")){
+  cle_periodo <- mlb_periodo %>% bind_rows(cle_periodo)
+}
 # TODO: formatta, combina immagini
 
-if(!is.null(mlb_periodo)){
+if(!is.null(cle_periodo)){
   # info periodo scelto
   guardians <- cle_periodo %>% 
     filter(data %in% periodo) %>% 

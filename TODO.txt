@@ -14,6 +14,7 @@ TODO
 MASTER
 
 AESTHETICS
+- dimensioni tabella
 - fontsize
 - grassetto (e.g. medici sasso vs borgonuovo)
 - colore testo dinamico in base allo sfondo
