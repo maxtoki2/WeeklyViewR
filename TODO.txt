@@ -3,7 +3,7 @@ BUGs
 TODO
 - Lista spesa
 - Meteo (https://stackoverflow.com/questions/73195711/how-to-get-a-day-weather-forecast-for-a-list-of-cities-using-r)
-- Minor
+- Minor (114 CLE, 445 COL, 402 AKR, 437 LC, 481 LBG)
 - Festivita
 - Sport
 
