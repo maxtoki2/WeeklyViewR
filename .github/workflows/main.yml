@@ -77,6 +77,9 @@ jobs:
       - name: Prune old logs (and commit deletion)
         run: |
           find logs/ -type f -mtime +7 -name 'log_*.txt' -delete
+          find mlb/saved/ -type f -mtime +21 -name 'mlb_*.RDS' -delete
+          find rusco/saved/ -type f -mtime +21 -name 'rusco_*.RDS' -delete
+          find mensa/saved/ -type f -mtime +21 -name 'mensa_*.RDS' -delete
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add --all

@@ -21,4 +21,3 @@ FUNCTIONALITY
 REWORK
 
 CLEANING
-- cancella vecchie settimane rusco
