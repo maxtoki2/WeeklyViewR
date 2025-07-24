@@ -1,0 +1,45 @@
+Starting R run: 2025-07-24_12-39-36_run-3323
+GitHub SHA: 999a2f9e86984846a56833189b12e4d7623cc810
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+[1] "guardians"
+`summarise()` has grouped output by 'colonna'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'colonna'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'colonna'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'colonna'. You can override using the
+`.groups` argument.
+Errore in celle_da_unire$riga_inizio[i]:celle_da_unire$riga_fine[i] : 
+  Argomento NA/NaN
+Chiamate: lapply -> FUN -> lapply -> FUN -> %>% -> table_prepare
+Esecuzione interrotta
