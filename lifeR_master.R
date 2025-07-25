@@ -68,7 +68,9 @@ dati <- bind_rows(lista_dati)
 tabelle <- unique(param_info$tabella)
 
 lapply(1:2, function(w){
+  # print(w)
   week_tabs <- lapply(tabelle, function(tab){
+    # print(tab)
     dati %>% filter(tabella == tab) %>% table_prepare(w)
   })
   names(week_tabs) <- tabelle

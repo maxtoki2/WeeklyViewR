@@ -175,15 +175,18 @@ table_prepare <- function(
       # select(-gruppo, -riga1)
       select(-gruppo)
       
-    for(i in 1:nrow(celle_da_unire)){
-      colonna <- celle_da_unire$colonna[i]
-      righe <- celle_da_unire$riga_inizio[i]:celle_da_unire$riga_fine[i]
-      testo <- str_replace_all(celle_da_unire$testo_unito[i], fixed("|"), "\n")
-      flextbl <- flextbl %>% 
-        compose(i = righe[1], j = colonna, as_paragraph(as_chunk(testo))) %>% 
-        merge_at(i = righe, j = colonna) %>% 
-        valign(valign = "top") #TODO: shrink/resize long text
+    if(nrow(celle_da_unire) > 0){
+      for(i in 1:nrow(celle_da_unire)){
+        colonna <- celle_da_unire$colonna[i]
+        righe <- celle_da_unire$riga_inizio[i]:celle_da_unire$riga_fine[i]
+        testo <- str_replace_all(celle_da_unire$testo_unito[i], fixed("|"), "\n")
+        flextbl <- flextbl %>% 
+          compose(i = righe[1], j = colonna, as_paragraph(as_chunk(testo))) %>% 
+          merge_at(i = righe, j = colonna) %>% 
+          valign(valign = "top") #TODO: shrink/resize long text
+      }  
     }
+    
   }
   
   if(nrow(celle_con_solo_immagine) > 0){
