@@ -1,15 +1,19 @@
 BUGs
 
 IMPROVEMENTS
+- Medici
+  - aggiungi telefoni nella colonna della domenica
 - MiLB
   - copia MLB (con logo)
   - aggiungi avversario (abbr)
 
 TODO
+- Ore Nadia (interattivo)
 - Lista spesa
 - Meteo (https://stackoverflow.com/questions/73195711/how-to-get-a-day-weather-forecast-for-a-list-of-cities-using-r)
 - Festivita
 - Sport
+- Calendario outlook
 
 MASTER
 

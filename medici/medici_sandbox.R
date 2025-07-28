@@ -88,7 +88,7 @@ orari_medici(12403)
 orari_medici(12418)
 orari_medici(16724)
 # url <- "https://www.progetto-sole.it/cercamedico/"
-
+# stringr::str_extract(text, "Telefono:[^\n]+")
 
 # https://chatgpt.com/c/6825b84f-4a40-800c-80da-eb4d241a930a
 # TODO: remove *Su Appuntamento
