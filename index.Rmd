@@ -124,89 +124,87 @@ for (i in seq_along(tabelle_formattate[[2]])) {
 }
 ```
 
+### Ore Nadia
 
-#
-
-<b>Note</b>
-
-```{=html}
-<div style="display: flex; align-items: flex-start; gap: 10px;">
-    <canvas id="drawingCanvas" width="800" height="300" 
-            style="border:2px solid black; touch-action: none;"></canvas>
-    <button onclick="clearCanvas()">Clear</button>
+<div style="text-align: center; margin-bottom: 1em;">
+  <button onclick="changeMonth(-1)">← Precedente</button>
+  <button onclick="changeMonth(1)">Successivo →</button>
 </div>
 
+<div id="calendar-container"></div>
+
 <script>
-  var canvas = document.getElementById("drawingCanvas");
-  var ctx = canvas.getContext("2d");
-  var drawing = false;
-  var erasing = false;
+let displayDate = new Date();  // Global variable to track displayed month
 
-  function getMousePos(event) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top
-    };
-  }
+function generateCalendar() {
+  const year = displayDate.getFullYear();
+  const month = displayDate.getMonth(); // 0 = Jan
 
-  function startDraw(event) {
-    // Allow only mouse or stylus (ignore finger touches)
-    if (event.pointerType === "touch") return;
+  const firstDay = new Date(year, month, 1).getDay();
+  const numDays = new Date(year, month + 1, 0).getDate();
+  const keyPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
 
-    drawing = true;
-    erasing = event.buttons === 32; // Check if stylus eraser button is pressed
-    var pos = getMousePos(event);
-    ctx.beginPath();
-    ctx.moveTo(pos.x, pos.y);
-    event.preventDefault();
-  }
+  let calendarHTML = `<table border="1" style="border-collapse:collapse; width:100%">`;
+  calendarHTML += `<tr><th colspan="7">${displayDate.toLocaleString('default', { month: 'long' })} ${year}</th></tr>`;
+  calendarHTML += `<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>`;
 
-  function draw(event) {
-    if (!drawing) return;
-    var pos = getMousePos(event);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle = erasing ? "white" : "black"; // Erase if using stylus button
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    event.preventDefault();
-    saveCanvas(); // Save after each stroke
-  }
-
-  function stopDraw() {
-    drawing = false;
-    ctx.closePath();
-    saveCanvas(); // Save final drawing state
-  }
-
-  function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    localStorage.removeItem("savedCanvas"); // Remove saved data
-  }
-
-  function saveCanvas() {
-    localStorage.setItem("savedCanvas", canvas.toDataURL()); // Convert canvas to an image string
-  }
-
-  function loadCanvas() {
-    var savedData = localStorage.getItem("savedCanvas");
-    if (savedData) {
-      var img = new Image();
-      img.onload = function () {
-        ctx.drawImage(img, 0, 0);
-      };
-      img.src = savedData;
+  let day = 1;
+  for (let i = 0; i < 6 && day <= numDays; i++) {
+    calendarHTML += "<tr>";
+    for (let j = 0; j < 7; j++) {
+      if ((i === 0 && j < firstDay) || day > numDays) {
+        calendarHTML += `<td></td>`;
+      } else {
+        const inputId = `${keyPrefix}-${String(day).padStart(2, '0')}`;
+        const savedValue = localStorage.getItem(inputId) || "";
+        calendarHTML += `
+          <td>
+            <strong>${day}</strong><br>
+            <input type="text" id="${inputId}" value="${savedValue}" style="width: 90%"/>
+          </td>`;
+        day++;
+      }
     }
+    calendarHTML += "</tr>";
   }
+  calendarHTML += "</table>";
 
-  // Load canvas on page load
-  window.onload = loadCanvas;
+  document.getElementById("calendar-container").innerHTML = calendarHTML;
 
-  // Pointer Events (for both mouse and stylus)
-  canvas.addEventListener("pointerdown", startDraw);
-  canvas.addEventListener("pointermove", draw);
-  canvas.addEventListener("pointerup", stopDraw);
-  canvas.addEventListener("pointerout", stopDraw);
+  // Save values on change
+  const inputs = document.querySelectorAll("#calendar-container input");
+  inputs.forEach(input => {
+    input.addEventListener("input", (e) => {
+      localStorage.setItem(e.target.id, e.target.value);
+    });
+  });
+}
 
+// Called when Prev/Next buttons are clicked
+function changeMonth(offset) {
+  displayDate.setMonth(displayDate.getMonth() + offset);
+  generateCalendar();
+}
+
+document.addEventListener("DOMContentLoaded", generateCalendar);
 </script>
-```
+
+<style>
+#calendar-container table {
+  font-family: sans-serif;
+  margin: auto;
+}
+#calendar-container th {
+  background-color: #f0f0f0;
+  text-align: center;
+}
+#calendar-container td {
+  text-align: center;
+  vertical-align: top;
+  padding: 5px;
+  height: 100px;
+}
+#calendar-container input {
+  margin-top: 5px;
+}
+</style>
