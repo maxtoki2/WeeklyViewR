@@ -31,7 +31,7 @@ extract_schedule <- function(part) {
 }
 
 orari_medici <- function(
-    id_medico = 12403 #11047 Boschi, 12403 Natali, 12418 Piccolantonio  
+    id_medico = 11047 #11047 Boschi, 12403 Natali, 12418 Piccolantonio  
     , studio_princ = "BERTACCHI"
     , url = "https://www.progetto-sole.it/cercamedico/"
 ){
@@ -64,11 +64,19 @@ orari_medici <- function(
   # Add back "Studio medico:" prefix for each (optional)
   parts <- paste0("Studio medico:", parts)
   
+  # Phone numbers
+  phone_line <- stringr::str_extract(text, "Telefono:[^\n]+")
+  phone_numbers <- stringr::str_extract_all(phone_line, "\\d{6,}")[[1]]
+  
+  # TODO: add phone as sunday entry
+  # schedules[[1]] %>% bind_rows(data.frame(day = "Domenica", address = paste(phone_numbers, collapse = " - ")))
+  
   # Apply function to all parts
   schedules <- lapply(parts, extract_schedule)
   
   schedules %>% 
     bind_rows() %>% 
+    bind_rows(data.frame(day = "Domenica", hours = paste(phone_numbers, collapse = " - "))) %>%
     mutate(medico = name, abbr = substr(name, 1, 8)) %>% 
     mutate(hours = str_remove(hours, "Su Appuntamento")) %>% 
     mutate(principale = str_detect(address, studio_princ))

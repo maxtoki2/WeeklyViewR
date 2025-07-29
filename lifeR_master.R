@@ -33,7 +33,7 @@ param_info <- tribble(
   , "calendario", "generale", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
   , "mlb", "generale", 13, 9, 10
   , "mensa", "mensa", 4, 0, 8
-  , "medici", "medici", 2, 0, 8
+  , "medici", "medici", 2, -3, 8
   , "guardians", "guardians", 2, 0, 10
 )
 
