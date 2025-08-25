@@ -71,7 +71,12 @@ lapply(1:2, function(w){
   # print(w)
   week_tabs <- lapply(tabelle, function(tab){
     # print(tab)
-    dati %>% filter(tabella == tab) %>% table_prepare(w)
+    subdati <- dati %>% filter(tabella == tab) 
+    if(nrow(subdati %>% filter(pagina == w)) > 0){
+      subdati %>% table_prepare(w)
+    } else {
+      NULL      
+    }  
   })
   names(week_tabs) <- tabelle
   week_tabs
