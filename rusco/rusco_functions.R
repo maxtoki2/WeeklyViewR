@@ -8,7 +8,7 @@ get_calendar <- function(
     , id_civico = secr_id_civico
 ){
   #start_date <- giorno - days(7)
-  formatted_date <- format(inizio, "%Y-%m-%dT%H:%M:%S")
+  formatted_date <- format(inizio + hours(1), "%Y-%m-%dT%H:%M:%S")
   # Create the payload
   payload <- list(
     url = payload_url
