@@ -57,9 +57,16 @@ for(i in 1:nrow(param_info)){
   topic <- param_info$gruppo[i]
   # TODO: sposta print() qui
   
-  dati_el <- source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)$value %>%
-    mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
-    assign_cell() 
+  dati_pulled <- source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)$value
+  
+  if(nrow(dati_pulled) > 0){
+    dati_el <- dati_pulled %>%
+      mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
+      assign_cell()   
+  } else {
+    dati_el <- NULL
+  }
+  
   lista_dati <- c(lista_dati, list(dati_el))
 }
 
