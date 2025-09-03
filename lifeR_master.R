@@ -82,7 +82,7 @@ lapply(1:2, function(w){
     if(nrow(subdati %>% filter(pagina == w)) > 0){
       subdati %>% table_prepare(w)
     } else {
-      NULL      
+      data.frame()      
     }  
   })
   names(week_tabs) <- tabelle
