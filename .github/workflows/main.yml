@@ -83,9 +83,20 @@ jobs:
           git commit -m "Add run log: $LOGFILE" || echo "No log changes to commit"
           git push
           
+      - name: Prune old tracked logs by commit date
+        run: |
+          CUTOFF=$(date -d '7 days ago' +%s)
+          for file in logs/log_*.txt; do
+            # Get last commit date for this file
+            last_commit=$(git log -1 --format=%ct -- "$file")
+            if [ -n "$last_commit" ] && [ "$last_commit" -lt "$CUTOFF" ]; then
+              git rm "$file"
+            fi
+          done
+
+          
       - name: Prune old logs (and commit deletion)
         run: |
-          find logs/ -type f -mtime +7 -name 'log_*.txt' -delete
           find mlb/saved/ -type f -mtime +21 -name 'mlb_*.RDS' -delete
           find rusco/saved/ -type f -mtime +21 -name 'rusco_*.RDS' -delete
           find mensa/saved/ -type f -mtime +21 -name 'mensa_*.RDS' -delete
