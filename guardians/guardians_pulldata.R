@@ -15,7 +15,9 @@ if(file_cle %in% list.files(folder_cle)){
   saveRDS(cle_periodo, glue("{folder_cle}/{file_cle}"))  
 }
 if(exists("mlb_periodo")){
-  cle_periodo <- mlb_periodo %>% bind_rows(cle_periodo)
+  cle_periodo <- bind_rows(
+    lapply(list(mlb_periodo, cle_periodo), function(x) if(nrow(x) == 0) NULL else x)
+  )
 }
 # TODO: formatta, combina immagini
 
