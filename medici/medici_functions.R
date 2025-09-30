@@ -74,10 +74,14 @@ orari_medici <- function(
   # Apply function to all parts
   schedules <- lapply(parts, extract_schedule)
   
-  schedules %>% 
-    bind_rows() %>% 
-    bind_rows(data.frame(day = "Domenica", hours = paste(phone_numbers, collapse = " - "))) %>%
-    mutate(medico = name, abbr = substr(name, 1, 8)) %>% 
-    mutate(hours = str_remove(hours, "Su Appuntamento")) %>% 
-    mutate(principale = str_detect(address, studio_princ))
+  if(max(sapply(schedules, length)) > 0){
+    schedules %>% 
+      bind_rows() %>% 
+      bind_rows(data.frame(day = "Domenica", hours = paste(phone_numbers, collapse = " - "))) %>%
+      mutate(medico = name, abbr = substr(name, 1, 8)) %>% 
+      mutate(hours = str_remove(hours, "Su Appuntamento")) %>% 
+      mutate(principale = str_detect(address, studio_princ))  
+  } else {
+    NULL
+  }
 }
