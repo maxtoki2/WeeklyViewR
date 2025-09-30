@@ -1,0 +1,68 @@
+Starting R run: 2025-09-30_03-29-46_run-4840
+GitHub SHA: 27e00b79652cbe2a6f58215e21ff4dce290aae8c
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+Error in `mutate()`:
+ℹ In argument: `principale = str_detect(address, studio_princ)`.
+Caused by error:
+! oggetto 'address' non trovato
+Backtrace:
+     ▆
+  1. ├─base::source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)
+  2. │ ├─base::withVisible(eval(ei, envir))
+  3. │ └─base::eval(ei, envir)
+  4. │   └─base::eval(ei, envir)
+  5. ├─... %>% ...
+  6. ├─dplyr::mutate(...)
+  7. ├─dplyr::inner_join(...)
+  8. ├─dplyr::mutate(., giorno_nr = numero_giorno_sett(day))
+  9. ├─dplyr::mutate(...)
+ 10. ├─dplyr::mutate(., day = tolower(day))
+ 11. ├─dplyr::mutate(., gruppo = "medici")
+ 12. ├─dplyr::bind_rows(.)
+ 13. │ └─rlang::list2(...)
+ 14. ├─base::lapply(param_id_medici, orari_medici)
+ 15. │ └─global FUN(X[[i]], ...)
+ 16. │   └─... %>% ...
+ 17. ├─dplyr::mutate(., principale = str_detect(address, studio_princ))
+ 18. ├─dplyr:::mutate.data.frame(., principale = str_detect(address, studio_princ))
+ 19. │ └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+ 20. │   ├─base::withCallingHandlers(...)
+ 21. │   └─dplyr:::mutate_col(dots[[i]], data, mask, new_columns)
+ 22. │     └─mask$eval_all_mutate(quo)
+ 23. │       └─dplyr (local) eval()
+ 24. ├─stringr::str_detect(address, studio_princ)
+ 25. │ └─stringr:::check_lengths(string, pattern)
+ 26. │   └─vctrs::vec_size_common(...)
+ 27. └─base::.handleSimpleError(...)
+ 28.   └─dplyr (local) h(simpleError(msg, call))
+ 29.     └─rlang::abort(message, class = error_class, parent = parent, call = error_call)
+Esecuzione interrotta
