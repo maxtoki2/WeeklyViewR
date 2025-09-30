@@ -16,7 +16,7 @@ if(file_cle %in% list.files(folder_cle)){
 }
 if(exists("mlb_periodo")){
   cle_periodo <- bind_rows(
-    lapply(list(mlb_periodo, cle_periodo), function(x) if(nrow(x) == 0) NULL else x)
+    lapply(list(mlb_periodo, cle_periodo), function(x) if(!is.null(x) && nrow(x) == 0) NULL else x)
   )
 }
 # TODO: formatta, combina immagini
