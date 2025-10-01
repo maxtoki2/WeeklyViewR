@@ -25,7 +25,7 @@ param_url_mensa <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/a
 param_inzio_periodo_mensa <- "01-09-2025" # TODO: possibly infer from file
 param_fine_periodo_mensa <- "20-10-2025" # TODO: possibly infer from file
 
-param_id_medici <- c(11047,16724,12418)
+param_id_medici <- c("boschi" = 11047, "piccolantonio" = 12418,"alberghini" = 16841)
 
 param_info <- tribble(
   ~gruppo, ~tabella, ~riga1, ~weekend_offset, ~font_size

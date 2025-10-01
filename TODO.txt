@@ -1,6 +1,7 @@
 BUGs
 
 IMPROVEMENTS
+- Messaggi (e.g. medico non trovato)
 - MiLB
   - aggiungi avversario (abbr)
 
@@ -19,7 +20,6 @@ AESTHETICS
 - fontsize
 - grassetto (e.g. medici sasso vs borgonuovo)
 - colore testo dinamico in base allo sfondo
-- spostare orologi nella zona inutilizzata in basso a dx della tabella.
 
 FUNCTIONALITY
 - all page canvas
