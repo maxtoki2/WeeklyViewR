@@ -21,7 +21,7 @@ if(exists("mlb_periodo")){
 }
 # TODO: formatta, combina immagini
 
-if(!is.null(cle_periodo)){
+if(!is.null(cle_periodo) && nrow(cle_periodo > 0)){
   # info periodo scelto
   guardians <- cle_periodo %>% 
     filter(data %in% periodo) %>% 

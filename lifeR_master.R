@@ -59,7 +59,7 @@ for(i in 1:nrow(param_info)){
   
   dati_pulled <- source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)$value
   
-  if(nrow(dati_pulled) > 0){
+  if(!is.null(dati_pulled) && nrow(dati_pulled) > 0){
     dati_el <- dati_pulled %>%
       mutate(gruppo = ifelse(gruppo == "famiglia", "calendario", gruppo)) %>% # TODO: address elsewhere
       assign_cell()   
