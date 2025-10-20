@@ -23,7 +23,7 @@ param_giorni <- 14
 
 param_url_mensa <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download?id=68ada0168c1a100099605fdf"
 param_inzio_periodo_mensa <- "01-09-2025" # TODO: possibly infer from file
-param_fine_periodo_mensa <- "20-10-2025" # TODO: possibly infer from file
+param_fine_periodo_mensa <- "24-10-2025" # TODO: possibly infer from file
 
 param_id_medici <- c("boschi" = 11047, "piccolantonio" = 12418,"alberghini" = 16841)
 
