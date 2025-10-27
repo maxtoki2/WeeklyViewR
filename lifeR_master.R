@@ -22,6 +22,7 @@ source("lifeR_helpers.R")
 param_giorni <- 14
 
 param_url_mensa <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download?id=68ada0168c1a100099605fdf"
+#https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download?id=68f5e18203ce61009b6a9f32
 param_inzio_periodo_mensa <- "01-09-2025" # TODO: possibly infer from file
 param_fine_periodo_mensa <- "24-10-2025" # TODO: possibly infer from file
 
