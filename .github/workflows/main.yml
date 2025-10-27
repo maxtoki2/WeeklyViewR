@@ -23,6 +23,8 @@ jobs:
             libpoppler-cpp-dev \
             libtesseract-dev \
             libleptonica-dev \
+            tesseract-ocr-eng \
+            tesseract-ocr-ita
 
       - name: Set up Italian locale
         run: |
