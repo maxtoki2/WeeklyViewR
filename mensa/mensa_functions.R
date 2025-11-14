@@ -4,7 +4,7 @@ get_menu <- function(
   , pdf_url = "https://www.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
   , table_width = 2700
 ){
-  menu <- image_read_pdf(pdf_url)
+  menu <- image_read_pdf(pdf_url, 1) %>% image_threshold(type = "white", threshold = "70%")
   
   date_from <- dmy(date_from)
   date_to <- dmy(date_to)
@@ -43,7 +43,7 @@ get_menu <- function(
   # getting menu entries
   menu %>% 
     image_crop(crop_coordinates)  %>%
-    image_threshold(type = "white", threshold = "70%") %>% 
+    # image_threshold(type = "white", threshold = "70%") %>% 
     image_morphology(method = "Dilate", kernel = "Rectangle:1x2") %>% 
     image_ocr_data("ita") %>%
     separate(bbox, c("bb_xstart", "bb_ystart", "bb_xend", "bb_yend")) %>% 
