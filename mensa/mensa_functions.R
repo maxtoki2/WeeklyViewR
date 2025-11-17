@@ -1,37 +1,28 @@
 get_menu <- function(
-  date_from = "21-10-2024"
-  , date_to = "07-03-2025"
-  , pdf_url = "https://www.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
-  , table_width = 2700
+    pdf_url = "https://www.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
+    , table_width = 2700
 ){
-  menu <- image_read_pdf(pdf_url, 1) %>% image_threshold(type = "white", threshold = "70%")
+  # anno scolastico
+  oggi <- today()
+  anno1 <- year(oggi) - ifelse(month(oggi) > 8, 0, 1)
+  anno_scolastico_vec <- c(anno1, anno1 + 1)
   
-  date_from <- dmy(date_from)
-  date_to <- dmy(date_to)
-  # start_year <- year(date_from)
-  dates_expanded <- data.frame(
-    data = seq(date_from, date_to, by = "1 day")
-  ) %>% 
-    mutate(giorno_sett = wday(data, week_start = 1)) %>% 
-    filter(giorno_sett < 6) %>% 
-    mutate(anno = year(data)) %>% 
-    mutate(new_week = (giorno_sett == 1)) %>% 
-    mutate(settimana = cumsum(new_week)) %>% 
-    mutate(gruppo_sett = settimana %% 5) %>% 
-    mutate(gruppo_sett = ifelse(gruppo_sett == 0, 5, gruppo_sett))
-
-  # general OCR
-  ocr_info <- menu %>% 
+  menu <- image_read_pdf(pdf_url, 1) 
+  
+  menu2 <- menu %>% 
+    # image_crop(crop_coordinates)  %>% 
+    image_threshold(type = "white", threshold = "70%") %>% 
+    image_morphology(method = "Dilate", kernel = "Rectangle:1x2") 
+  
+  ocr_info <- menu2 %>% 
     image_ocr_data("ita") %>% 
     separate(bbox, c("bb_xstart", "bb_ystart", "bb_xend", "bb_yend")) %>% 
     mutate(across(starts_with("bb"), as.numeric))
   
-  # weekdays and dates columns to infer table position and dimensions
-  days_col <- ocr_info %>% filter(word %in% c("LUN","MAR", "MER", "GIO", "VEN"))
   table_top <- ocr_info %>% filter(word == "Giorni") %>% select(bb_yend) %>% unlist # min(days_col$bb_ystart)
   table_bottom <- ocr_info %>% filter(word == "completamento") %>% select(bb_ystart) %>% unlist #max(days_col$bb_yend)
   table_height <- plyr::round_any(table_bottom - table_top, 50, ceiling)
-
+  
   dates_col <- ocr_info %>% 
     filter(str_detect(word, regex("\\b(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])\\b"))) %>% 
     filter(bb_ystart > table_top)
@@ -39,6 +30,29 @@ get_menu <- function(
   table_left <- plyr::round_any(max(dates_col$bb_xend), 50)
   
   crop_coordinates <- glue("{table_width}x{table_height}+{table_left}+{table_top}")  # "2400x1550+800+535"  
+  
+  bind_cols(
+    dates_col %>% filter(row_number() %% 2 == 1) %>% rename(date_from = word)
+    , dates_col %>% filter(row_number() %% 2 == 0) %>% select(word) %>% rename(date_to = word)
+  ) %>% 
+    mutate(space = coalesce(bb_ystart - lag(bb_yend), 120)) %>% 
+    mutate(new_group = space > 100) %>% 
+    mutate(gruppo_sett = cumsum(new_group)) %>% 
+    select(date_from, date_to, gruppo_sett) -> week_boxes
+  
+  lapply(1:nrow(week_boxes), function(i){
+    date_from <- dmy(paste0(week_boxes$date_from[i], "/2020"))
+    date_to <-   dmy(paste0(week_boxes$date_to[i], "/2020"))
+    gruppo <- week_boxes$gruppo_sett[i]
+    year(date_from) <- anno_scolastico_vec[ifelse(month(date_from) >= 9, 1, 2)]
+    year(date_to) <- anno_scolastico_vec[ifelse(month(date_to) >= 9, 1, 2)]
+    data.frame(
+      data = seq.Date(date_from, date_to, "1 day")
+      , gruppo_sett = gruppo
+    )
+  }) %>% 
+    bind_rows() %>% 
+    mutate(giorno_sett = wday(data, week_start = 1)) -> giorni_gruppo
   
   # getting menu entries
   menu %>% 
@@ -68,12 +82,10 @@ get_menu <- function(
     mutate(giorno_sett = row_group %% 5) %>% 
     mutate(giorno_sett = ifelse(giorno_sett == 0, 5, giorno_sett))
   
-  # attach dates
-  dates_expanded %>% 
-    select(data, gruppo_sett, giorno_sett) %>%  
-    inner_join(menu_entries, by = c("gruppo_sett", "giorno_sett"), relationship = "many-to-many") %>%
+  menu_entries %>% 
+    inner_join(giorni_gruppo, by = c("gruppo_sett", "giorno_sett"), relationship = "many-to-many") %>% 
     arrange(data, col_group) %>% 
     select(data, descrizione)
+  
 }
 
-# get_menu()
