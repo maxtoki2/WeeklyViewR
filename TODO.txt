@@ -1,6 +1,9 @@
 BUGs
 
+FIX
+
 IMPROVEMENTS
+- Focus su oggi (riquadro basso-dx)
 - Messaggi (e.g. medico non trovato)
 - MiLB
   - aggiungi avversario (abbr)

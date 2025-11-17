@@ -21,7 +21,10 @@ source("lifeR_helpers.R")
 
 param_giorni <- 14
 
-param_url_mensa <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download?id=68f5e18203ce61009b6a9f32"
+param_url_mensa_base <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download"
+param_url_mensa_doc_id <- "68f5e18203ce61009b6a9f32"
+
+param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
 
 param_id_medici <- c("boschi" = 11047, "piccolantonio" = 12418,"alberghini" = 16841)
 
