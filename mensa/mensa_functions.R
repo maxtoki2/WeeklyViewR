@@ -1,5 +1,6 @@
 get_menu <- function(
     pdf_url = "https://www.comune.sassomarconi.bologna.it/upload/sassomarconi_ecm8v2/gestionedocumentale/ScuoledellInfanzia_784_16225.pdf"
+    , pagina = 2
     , table_width = 2700
 ){
   # anno scolastico
@@ -7,7 +8,7 @@ get_menu <- function(
   anno1 <- year(oggi) - ifelse(month(oggi) > 8, 0, 1)
   anno_scolastico_vec <- c(anno1, anno1 + 1)
   
-  menu <- image_read_pdf(pdf_url, 1) 
+  menu <- image_read_pdf(pdf_url, pagina) 
   
   menu2 <- menu %>% 
     # image_crop(crop_coordinates)  %>% 
