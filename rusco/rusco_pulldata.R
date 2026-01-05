@@ -21,6 +21,7 @@ if(file_rusco %in% list.files(folder_rusco)){
 
 # info periodo scelto
 rusco <- rusco_periodo %>% 
+  mutate(data = data - days(param_rusco_days_offset)) %>% 
   filter(data %in% periodo) %>% 
   mutate(gruppo = "rusco")
 
