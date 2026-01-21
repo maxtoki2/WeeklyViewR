@@ -1,0 +1,10 @@
+
+| Da fare |
+|------|
+```{r results='asis'}
+lista_note <- list("🏠 Ungere porta principale, 🏠 Trapianto lamponi, 🏠 Discarica, 🏠 Pulizia grate lastricato, ✈️ ETA UK, ✈️ Car rental (Grayson), ✈️ Biscotti secchi, ✈️ Motorola, 🛒 Rasoio capelli, 🛒 Appendiabiti bambini, 🛒 Vanga")
+
+for (x in lista_note) {
+  cat("|", x, "|\n")
+}
+```

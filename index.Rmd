@@ -208,3 +208,13 @@ document.addEventListener("DOMContentLoaded", generateCalendar);
   margin-top: 5px;
 }
 </style>
+
+##  {.tabset}
+
+| Da fare |
+|------|
+```{r results='asis'}
+for (x in lista_note) {
+  cat("|", x, "|\n")
+}
+```

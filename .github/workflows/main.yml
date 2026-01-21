@@ -56,7 +56,7 @@ jobs:
 
       - name: Install main dependencies
         run: |
-          Rscript -e 'install.packages(c("tidyr", "dplyr", "lubridate", "glue", "stringr", "httr", "jsonlite", "flextable", "calendar", "DescTools", "rmarkdown", "knitr", "kableExtra", "curl", "rsvg", "magick", "rvest", "pdftools", "tesseract", "plyr"))'
+          Rscript -e 'install.packages(c("tidyr", "dplyr", "lubridate", "glue", "stringr", "httr", "httr2", "jsonlite", "flextable", "calendar", "DescTools", "rmarkdown", "knitr", "kableExtra", "curl", "rsvg", "magick", "rvest", "pdftools", "tesseract", "plyr", "emojifont"))'
 
       - name: Set Time Zone
         run: echo "TZ=Europe/Rome" >> $GITHUB_ENV

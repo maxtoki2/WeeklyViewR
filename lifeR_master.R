@@ -16,6 +16,8 @@ library(calendar)
 library(flextable)
 library(DescTools)
 library(rvest)
+library(emojifont)
+library(httr2)
 
 source("lifeR_helpers.R")
 
