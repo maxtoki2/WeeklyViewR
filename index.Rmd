@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", generateCalendar);
 
 | Da fare |
 |------|
-```{r results='asis'}
+```{r results='asis', echo=FALSE}
 for (x in lista_note) {
   cat("|", x, "|\n")
 }
