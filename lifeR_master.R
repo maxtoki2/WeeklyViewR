@@ -94,4 +94,7 @@ lapply(1:2, function(w){
   week_tabs
 }) -> tabelle_formattate
 
+# recupera note
+source("note/note_preparazione.R")
+
 rmarkdown::render("index.Rmd")
