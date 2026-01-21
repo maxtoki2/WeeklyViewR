@@ -211,10 +211,8 @@ document.addEventListener("DOMContentLoaded", generateCalendar);
 
 ##  {.tabset}
 
-| Da fare |
-|------|
 ```{r results='asis', echo=FALSE}
 for (x in lista_note) {
-  cat("|", x, "|\n")
+  cat("|", x, "\n")
 }
 ```
