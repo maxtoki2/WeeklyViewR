@@ -40,6 +40,7 @@ param_info <- tribble(
   , "mensa", "mensa", 4, 0, 8
   , "medici", "medici", 2, -3, 8
   , "guardians", "guardians", 2, 0, 10
+  , "tv_sports", "sport", 1, 0, 8
 )
 
 secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
