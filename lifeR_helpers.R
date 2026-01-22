@@ -126,6 +126,8 @@ table_prepare <- function(
   , tbl_height = .15
   , oggi =  giorno
   , sfondo_oggi = "ivory2"
+  , img_width = .4
+  , img_height = .4
 ){
   days_start <- inizio_settimana + (w - 1) * 7
   days_end <- days_start + 6
@@ -207,7 +209,7 @@ table_prepare <- function(
       cell_txt_col <- TextContrastColor(cell_bg)
       flextbl <- flextbl %>% 
         compose(i = riga$riga, j = riga$colonna, value = as_paragraph(
-          as_image(riga$immagine, width = .4, height = .4) # TODO: parametrize w/h
+          as_image(riga$immagine, width = img_width, height = img_height)
           , " "
           , as_chunk(riga$testo_immagine, props = fp_text_default(color = cell_txt_col, font.size = 8))) # TODO: parametrize size and pick text color based on background (DescTools::TextContrastColor)
           , part = "body"

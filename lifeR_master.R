@@ -33,14 +33,14 @@ param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
 param_id_medici <- c("boschi" = 11047, "zatti" = 13277,"alberghini" = 16841)
 
 param_info <- tribble(
-  ~gruppo, ~tabella, ~riga1, ~weekend_offset, ~font_size
-  , "rusco", "generale", 10, 8, 10
-  , "calendario", "generale", 1, 0, 6 # DEBUG: pulldata assegna "famiglia"
-  , "mlb", "generale", 13, 9, 10
-  , "mensa", "mensa", 4, 0, 8
-  , "medici", "medici", 2, -3, 8
-  , "guardians", "guardians", 2, 0, 10
-  , "tv_sports", "sport", 1, 0, 8
+  ~gruppo, ~tabella, ~riga1, ~weekend_offset, ~font_size, ~image_width, ~image_height
+  , "rusco", "generale", 10, 8, 10, .4, .4
+  , "calendario", "generale", 1, 0, 6, NA, NA # DEBUG: pulldata assegna "famiglia"
+  , "mlb", "generale", 13, 9, 10, .4, .4
+  , "mensa", "mensa", 4, 0, 8, NA, NA
+  , "medici", "medici", 2, -3, 8, NA, NA
+  , "guardians", "guardians", 2, 0, 10, .4, .4
+  , "tv_sports", "sport", 1, 0, 8, .25, .25
 )
 
 secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
@@ -86,7 +86,8 @@ lapply(1:2, function(w){
     # print(tab)
     subdati <- dati %>% filter(tabella == tab) 
     if(nrow(subdati %>% filter(pagina == w)) > 0){
-      subdati %>% table_prepare(w)
+      image_size <- param_info %>% filter(tabella == tab & !is.na(image_width)) %>% select(starts_with("image")) %>% distinct() %>% unlist
+      subdati %>% table_prepare(w, img_width = image_size["image_width"], img_height = image_size["image_height"])
     } else {
       data.frame(`Non Disponibile` = character(0)) %>% flextable() 
     }  
