@@ -1,0 +1,45 @@
+# sky sport
+pull_sky_json <- function(
+    day_start = today()
+    , day_end = today()
+    , url = glue("https://apid.sky.it/gtv/v1/events?v=1.0.89-prod&to={day_end}T23%3A59%3A59Z&pageSize=0&pageNum=0&from={day_start}T00%3A00%3A00Z&env=DTH&subGenres=&channelCategories=6")
+){
+  res <- GET(url)
+  json_text <- content(res, "text", encoding = "UTF-8")
+  
+}
+
+# sky_json <- pull_sky_json()
+
+parse_sky_json <- function(j){
+  dat <- fromJSON(j, flatten = TRUE)[[1]]
+  
+  if(class(dat) == "character"){
+    NULL
+  } else {
+    dat %>%
+      filter(str_detect(channel.name, "Sky Sport")) %>% 
+      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News")) %>% # I think this gets live and excludes talk shows/news
+      distinct() 
+  }
+}
+
+prepare_sky_table <- function(
+    parsed_games
+    # TODO: hours to show, select sport / team / etc
+    # keywords to include/exclude (eventTitle, eventSynopsis)
+){
+  parsed_games %>% 
+    mutate(starttime = ymd_hms(starttime)) %>% 
+    mutate(
+      data = date(starttime)
+      , ora = glue("{hour(starttime)}:{sprintf('%02d', minute(starttime))}")
+      , descrizione = glue("{ora} {eventTitle}")
+      , gruppo = "tv_sports"
+      , testo_immagine = descrizione
+      , immagine = "tv_sports//glyphs//sport.png"
+      , colore = "FFFFFF"
+    ) 
+}
+
+# parsed_games <- parse_sky_json(pull_sky_json())
