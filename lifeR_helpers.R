@@ -205,17 +205,25 @@ table_prepare <- function(
   if(nrow(celle_con_testo_immagine) > 0){
     for(i in 1:nrow(celle_con_testo_immagine)){
       riga <- celle_con_testo_immagine[i,]
-      cell_bg <- paste0("#", riga$colore)
-      cell_txt_col <- TextContrastColor(cell_bg)
+      if(!is.na(riga$colore)){
+        cell_bg <- paste0("#", riga$colore)
+        cell_txt_col <- TextContrastColor(cell_bg)
+      } else {
+        cell_bg <- NA
+        cell_txt_col <- "#000000"
+      }
       flextbl <- flextbl %>% 
         compose(i = riga$riga, j = riga$colonna, value = as_paragraph(
           as_image(riga$immagine, width = img_width, height = img_height)
           , " "
           , as_chunk(riga$testo_immagine, props = fp_text_default(color = cell_txt_col, font.size = 8))) # TODO: parametrize size and pick text color based on background (DescTools::TextContrastColor)
           , part = "body"
-        ) %>% 
-        # valign(j = 2, valign = "center") %>% 
-        bg(i = riga$riga, j = riga$colonna, bg = cell_bg)
+        ) 
+      if(!is.na(cell_bg)){
+        flextbl <- flextbl %>% 
+          bg(i = riga$riga, j = riga$colonna, bg = cell_bg)
+      }
+
     }  
   }
   
