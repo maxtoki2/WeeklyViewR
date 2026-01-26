@@ -19,7 +19,7 @@ parse_sky_json <- function(j){
   } else {
     dat %>%
       filter(str_detect(channel.name, "Sky Sport")) %>% 
-      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News") & is.na(price.price)) %>% # I think this gets live and excludes talk shows/news
+      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News")) %>% # I think this gets live and excludes talk shows/news
       distinct() 
   }
 }
@@ -30,14 +30,16 @@ prepare_sky_table <- function(
     # keywords to include/exclude (eventTitle, eventSynopsis, contenTitle)
     # parsed_games %>% filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(.x, "Test")))
     , keywords = sky_parameters$keywords
+    , valid_hours = sky_parameters$valid_hours
 ){
   parsed_games %>% 
     inner_join(keywords, c("content.subgenre.name" = "Sport")) %>% 
     mutate(kw_regex_include = coalesce(purrr::map_chr(kw_include, ~ str_c(.x, collapse = "|")), "")) %>% 
     mutate(kw_regex_exclude = coalesce(purrr::map_chr(kw_exclude, ~ str_c(.x, collapse = "|")), "")) %>% 
     filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_include)))) %>% 
-    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_exclude), negate = TRUE))) %>% 
+    filter(if_all(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_exclude), negate = TRUE))) %>% 
     mutate(starttime = ymd_hms(starttime)) %>% 
+    filter(hour(starttime) %in% valid_hours) %>% 
     mutate(
       data = date(starttime)
       , ora = glue("{hour(starttime)}:{sprintf('%02d', minute(starttime))}")

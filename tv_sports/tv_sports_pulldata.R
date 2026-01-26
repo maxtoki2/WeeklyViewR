@@ -20,7 +20,7 @@ sky_schedule <- lapply(periodo, function(d){
 # aggreaga
 tv_sports <- bind_rows(
   prepare_nhl_table(get_nhl_games())
-  , sky_schedule
+  , sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
 )
 
 # restituisci tabella
