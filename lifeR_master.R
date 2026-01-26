@@ -20,6 +20,7 @@ library(emojifont)
 library(httr2)
 
 source("lifeR_helpers.R")
+source("lifeR_parameters.R")
 
 param_giorni <- 14
 
