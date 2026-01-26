@@ -83,7 +83,7 @@ tabelle <- unique(param_info$tabella)
 lapply(1:2, function(w){
   # print(w)
   week_tabs <- lapply(tabelle, function(tab){
-    # print(tab)
+    print(tab)
     subdati <- dati %>% filter(tabella == tab) 
     if(nrow(subdati %>% filter(pagina == w)) > 0){
       image_size <- param_info %>% filter(tabella == tab & !is.na(image_width)) %>% select(starts_with("image")) %>% distinct() %>% unlist

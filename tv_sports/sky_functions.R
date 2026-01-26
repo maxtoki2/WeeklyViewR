@@ -27,9 +27,16 @@ parse_sky_json <- function(j){
 prepare_sky_table <- function(
     parsed_games
     # TODO: hours to show, select sport / team / etc
-    # keywords to include/exclude (eventTitle, eventSynopsis)
+    # keywords to include/exclude (eventTitle, eventSynopsis, contenTitle)
+    # parsed_games %>% filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(.x, "Test")))
+    , keywords = sky_parameters$keywords
 ){
   parsed_games %>% 
+    inner_join(keywords, c("content.subgenre.name" = "Sport")) %>% 
+    mutate(kw_regex_include = coalesce(purrr::map_chr(kw_include, ~ str_c(.x, collapse = "|")), "")) %>% 
+    mutate(kw_regex_exclude = coalesce(purrr::map_chr(kw_exclude, ~ str_c(.x, collapse = "|")), "")) %>% 
+    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_include)))) %>% 
+    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_exclude), negate = TRUE))) %>% 
     mutate(starttime = ymd_hms(starttime)) %>% 
     mutate(
       data = date(starttime)
@@ -37,9 +44,21 @@ prepare_sky_table <- function(
       , descrizione = glue("{ora} {eventTitle}")
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
-      , immagine = "tv_sports//glyphs//sport.png"
+      , immagine = glue("tv_sports/glyphs/sport.png")
       , colore = "FFFFFF"
     ) 
 }
 
 # parsed_games <- parse_sky_json(pull_sky_json())
+
+filter_sky_table <- function(
+  parsed_games
+  , keywords = sky_parameters$keywords
+){
+  parsed_games %>% 
+    inner_join(keywords, c("content.subgenre.name" = "Sport")) %>% 
+    mutate(kw_regex_include = coalesce(purrr::map_chr(kw_include, ~ str_c(.x, collapse = "|")), "")) %>% 
+    mutate(kw_regex_exclude = coalesce(purrr::map_chr(kw_exclude, ~ str_c(.x, collapse = "|")), "")) %>% 
+    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_include)))) %>% 
+    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_exclude), negate = TRUE)))
+}
