@@ -19,7 +19,7 @@ parse_sky_json <- function(j){
   } else {
     dat %>%
       filter(str_detect(channel.name, "Sky Sport")) %>% 
-      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News")) %>% # I think this gets live and excludes talk shows/news
+      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News") & is.na(price.price)) %>% # I think this gets live and excludes talk shows/news
       distinct() 
   }
 }
@@ -44,21 +44,9 @@ prepare_sky_table <- function(
       , descrizione = glue("{ora} {eventTitle}")
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
-      , immagine = glue("tv_sports/glyphs/sport.png")
+      , immagine = as.character(glue("tv_sports/glyphs/{content.subgenre.name}.png"))
       , colore = "FFFFFF"
     ) 
 }
 
 # parsed_games <- parse_sky_json(pull_sky_json())
-
-filter_sky_table <- function(
-  parsed_games
-  , keywords = sky_parameters$keywords
-){
-  parsed_games %>% 
-    inner_join(keywords, c("content.subgenre.name" = "Sport")) %>% 
-    mutate(kw_regex_include = coalesce(purrr::map_chr(kw_include, ~ str_c(.x, collapse = "|")), "")) %>% 
-    mutate(kw_regex_exclude = coalesce(purrr::map_chr(kw_exclude, ~ str_c(.x, collapse = "|")), "")) %>% 
-    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_include)))) %>% 
-    filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_exclude), negate = TRUE)))
-}
