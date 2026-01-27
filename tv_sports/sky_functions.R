@@ -19,7 +19,7 @@ parse_sky_json <- function(j){
   } else {
     dat %>%
       filter(str_detect(channel.name, "Sky Sport")) %>% 
-      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News")) %>% # I think this gets live and excludes talk shows/news
+      filter(programHighlights == "L" & content.episodeNumber > 0 & !str_detect(content.contentTitle, "News") & is.na(ppvReferenceId)) %>% # I think this gets live and excludes talk shows/news
       distinct() 
   }
 }
@@ -38,7 +38,7 @@ prepare_sky_table <- function(
     mutate(kw_regex_exclude = coalesce(purrr::map_chr(kw_exclude, ~ str_c(.x, collapse = "|")), "")) %>% 
     filter(if_any(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_include)))) %>% 
     filter(if_all(contains(c("Title", "Synopsis")), ~str_detect(tolower(.x), tolower(kw_regex_exclude), negate = TRUE))) %>% 
-    mutate(starttime = ymd_hms(starttime)) %>% 
+    mutate(starttime = ymd_hms(starttime, tz = "Europe/Rome")) %>% 
     filter(hour(starttime) %in% valid_hours) %>% 
     mutate(
       data = date(starttime)
