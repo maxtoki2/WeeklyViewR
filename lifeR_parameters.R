@@ -7,6 +7,7 @@ sky_parameters <- list(
     , "Motori", NA, c("test"), "motori.png"
     , "Calcio", c("bologna"), c("prepartita", "postpartita", "approfondimento", "news"), "calcio.png"
   )
+  , valid_hours = 7:22
 )
   
   
