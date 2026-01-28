@@ -10,8 +10,8 @@ url <- "https://1uf2cfvii9.execute-api.eu-central-1.amazonaws.com/events-by-date
 # Query API
 resp <- request(url) |>
   req_url_query(
-    fromDate = "2025-09-08Z",
-    toDate   = "2025-09-21Z"
+    fromDate = "2026-01-27Z",
+    toDate   = "2026-01-30Z"
   ) |>
   req_perform()
 

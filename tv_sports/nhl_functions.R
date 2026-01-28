@@ -55,11 +55,11 @@ prepare_nhl_table <- function(parsed_games, hours_to_show = 6:23){
     mutate(
       data = date(time_cet)
       , ora = glue("{hour(time_cet)}:{sprintf('%02d', minute(time_cet))}")
-      , descrizione = glue("{ora} {awayTeam_abbrev} @ {homeTeam_abbrev}")
+      , descrizione = glue("{ora} NHL {awayTeam_abbrev} @ {homeTeam_abbrev}")
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
       , immagine = "tv_sports//glyphs//hockey.png"
-      , colore = "FFFFFF"
+      , colore = NA_character_
     )
 }
 

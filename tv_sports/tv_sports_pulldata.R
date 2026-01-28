@@ -21,7 +21,9 @@ sky_schedule <- lapply(periodo, function(d){
 tv_sports <- bind_rows(
   prepare_nhl_table(get_nhl_games())
   , sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
-)
+  , parse_rsi()
+) %>% 
+  arrange(data, ora)
 
 # restituisci tabella
 tv_sports

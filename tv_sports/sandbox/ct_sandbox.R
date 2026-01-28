@@ -3,7 +3,7 @@ library(dplyr)
 library(purrr)
 library(stringr)
 
-url <- "https://www.ceskatelevize.cz/tv-program/06.09.2025/"
+url <- "https://www.ceskatelevize.cz/tv-program/27.01.2025/"
 page <- read_html(url)
 
 # Find all headings, locate the "ČT sport" one

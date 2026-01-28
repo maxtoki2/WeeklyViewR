@@ -43,11 +43,11 @@ prepare_sky_table <- function(
     mutate(
       data = date(starttime)
       , ora = glue("{hour(starttime)}:{sprintf('%02d', minute(starttime))}")
-      , descrizione = glue("{ora} {eventTitle}")
+      , descrizione = glue("{ora} SKY {eventTitle}")
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
       , immagine = as.character(glue("tv_sports/glyphs/{content.subgenre.name}.png"))
-      , colore = "FFFFFF"
+      , colore = NA_character_
     ) 
 }
 
