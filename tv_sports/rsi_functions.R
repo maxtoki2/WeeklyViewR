@@ -33,7 +33,7 @@ parse_rsi <- function(
       , descrizione = glue("{ora} RSI {title}")
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
-      , immagine = as.character(glue("tv_sports/glyphs/{name}.png"))
+      , immagine = as.character(glue("tv_sports/glyphs/{tolower(name)}.png"))
       , colore = NA_character_
     )
   
