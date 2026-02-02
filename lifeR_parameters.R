@@ -3,10 +3,10 @@
 sky_parameters <- list(
   keywords = tibble::tribble(
     ~Sport, ~kw_include, ~kw_exclude, ~glyph
-    , "Basket", c("nba", "virtus"), c("prepartita", "postpartita", "approfondimento", "news"), "basket.png"
-    , "Motori", "xxx", c("test"), "motori.png"
+    , "Basket", c(" "), c("prepartita", "postpartita", "approfondimento", "news"), "basket.png"
+    , "Motori", " ", c("test"), "motori.png"
     , "Calcio", c("bologna"), c("prepartita", "postpartita", "approfondimento", "news"), "calcio.png"
-    , "Rugby", c("Six Nations"), c("prepartita", "postpartita", "approfondimento", "news"), "rugby.png"
+    , "Rugby", c("Six Nations", "Sei Nazioni"), c("prepartita", "postpartita", "approfondimento", "news"), "rugby.png"
   )
   , valid_hours = 7:22
 )
