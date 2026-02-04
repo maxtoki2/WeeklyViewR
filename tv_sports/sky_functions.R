@@ -46,7 +46,7 @@ prepare_sky_table <- function(
       , descrizione = glue("{ora} SKY {eventTitle}")
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
-      , immagine = as.character(glue("tv_sports/glyphs/{tolower(content.subgenre.name)}.png"))
+      , immagine = as.character(glue("tv_sports/glyphs/{tolower(glyph)}"))
       , colore = NA_character_
     ) 
 }
