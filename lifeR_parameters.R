@@ -1,5 +1,24 @@
 # collection of all parameters
 
+secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
+secr_id_indirizzo <- Sys.getenv("ID_INDIRIZZO")
+secr_id_civico <- Sys.getenv("ID_CIVICO")
+
+# TODO: move to calendario?
+param_calendari <- c(
+  "famiglia" = glue("https://calendar.google.com/calendar/ical/qblk3l3l4vu78epu50r1k3jmj0%40group.calendar.google.com/private-{secr_calendario_famiglia}/basic.ics")
+)
+
+param_rusco_days_offset <- 1
+
+param_url_mensa_base <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download"
+param_url_mensa_doc_id <- "68f5e18203ce61009b6a9f32"
+
+param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
+
+param_id_medici <- c("boschi" = 11047, "zatti" = 13277,"alberghini" = 16841)
+
+
 lista_esclusione <- c("prepartita", "postpartita", "approfondimento", "news", "presentazione", "test")
 
 sky_parameters <- list(

@@ -24,15 +24,6 @@ source("lifeR_parameters.R")
 
 param_giorni <- 14
 
-param_rusco_days_offset <- 1
-
-param_url_mensa_base <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download"
-param_url_mensa_doc_id <- "68f5e18203ce61009b6a9f32"
-
-param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
-
-param_id_medici <- c("boschi" = 11047, "zatti" = 13277,"alberghini" = 16841)
-
 param_info <- tribble(
   ~gruppo, ~tabella, ~riga1, ~weekend_offset, ~font_size, ~image_width, ~image_height
   , "rusco", "generale", 10, 8, 10, .4, .4
@@ -42,16 +33,6 @@ param_info <- tribble(
   , "medici", "medici", 2, -3, 8, NA, NA
   , "guardians", "guardians", 2, 0, 10, .4, .4
   , "tv_sports", "sport", 1, 0, 8, .25, .25
-)
-
-secr_calendario_famiglia <- Sys.getenv("GCAL_FAMIGLIA")
-secr_id_indirizzo <- Sys.getenv("ID_INDIRIZZO")
-secr_id_civico <- Sys.getenv("ID_CIVICO")
-
-# TODO: move to calendario?
-param_calendari <- c(
-  "famiglia" = glue("https://calendar.google.com/calendar/ical/qblk3l3l4vu78epu50r1k3jmj0%40group.calendar.google.com/private-{secr_calendario_famiglia}/basic.ics")
-  # , "guardians" = "http://ics.ecal.com/ecal-sub/675056cc2c79a8000823d913/MLB.ics"
 )
 
 giorno <- today()
