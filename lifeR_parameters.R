@@ -11,7 +11,7 @@ sky_parameters <- list(
     , "Rugby", c("Six Nations", "Sei Nazioni"), lista_esclusione, "rugby.png"
     , "Atletica", " ", lista_esclusione, "atletica.png"
     , "Volley", " ", lista_esclusione, "volley.png"
-    , "Altri", " ", c("padel", "judo", lista_esclusione), "sport.png"
+    # , "Altri", " ", c("padel", "judo", lista_esclusione), "sport.png"
     # , "Tennis", lista_esclusione, "tennis.png"
   )
   , valid_hours = 7:22
