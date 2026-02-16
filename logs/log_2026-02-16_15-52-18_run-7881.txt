@@ -1,0 +1,127 @@
+Starting R run: 2026-02-16_15-52-18_run-7881
+GitHub SHA: 2213f8fb98d83b3a89535d3f0efb349666412f88
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+[1] "guardians"
+[1] "sport"
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+[1] "generale"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "mensa"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "medici"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "guardians"
+[1] "sport"
+[1] "generale"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "mensa"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "medici"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "guardians"
+[1] "sport"
+Error in `arrange()`:
+ℹ In argument: `..2 = order`.
+Caused by error:
+! `..2` must be a vector, not a function.
+Backtrace:
+     ▆
+  1. ├─base::source("note/note_preparazione.R")
+  2. │ ├─base::withVisible(eval(ei, envir))
+  3. │ └─base::eval(ei, envir)
+  4. │   └─base::eval(ei, envir)
+  5. ├─global render_lista_note()
+  6. │ └─base::lapply(...)
+  7. │   └─FUN(X[[i]], ...)
+  8. │     └─... %>% toString()
+  9. ├─base::toString(.)
+ 10. ├─base::unlist(.)
+ 11. ├─dplyr::select(., text)
+ 12. ├─dplyr::arrange(., project_order, order)
+ 13. ├─dplyr:::arrange.data.frame(., project_order, order)
+ 14. │ └─dplyr:::arrange_rows(.data, dots = dots, locale = .locale)
+ 15. │   ├─dplyr::mutate(data, `:=`("{name}", !!dot), .keep = "none")
+ 16. │   └─dplyr:::mutate.data.frame(data, `:=`("{name}", !!dot), .keep = "none")
+ 17. │     └─dplyr:::mutate_cols(.data, dplyr_quosures(...), by)
+ 18. │       ├─base::withCallingHandlers(...)
+ 19. │       └─dplyr:::mutate_col(dots[[i]], data, mask, new_columns)
+ 20. │         └─mask$eval_all_mutate(quo)
+ 21. │           └─dplyr (local) eval()
+ 22. ├─dplyr:::dplyr_internal_error("dplyr:::mutate_not_vector", `<named list>`)
+ 23. │ └─rlang::abort(class = c(class, "dplyr:::internal_error"), dplyr_error_data = data)
+ 24. │   └─rlang:::signal_abort(cnd, .file)
+ 25. │     └─base::signalCondition(cnd)
+ 26. └─dplyr (local) `<fn>`(`<dpl:::__>`)
+ 27.   └─rlang::abort(message, class = error_class, parent = parent, call = error_call)
+Esecuzione interrotta
