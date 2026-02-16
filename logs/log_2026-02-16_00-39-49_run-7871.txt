@@ -1,0 +1,32 @@
+Starting R run: 2026-02-16_00-39-49_run-7871
+GitHub SHA: b81ff3c54c3333d9d5036cf06ea4076306e51f46
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+Errore: lexical error: invalid char in json text.
+                                       array(0) { } array(3) {   ["url
+                     (right here) ------^
+Esecuzione interrotta

@@ -1,0 +1,116 @@
+Starting R run: 2026-02-12_07-17-18_run-7795
+GitHub SHA: 575e6065431ca25ac8f2d2c698d7847ba2f96bc4
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+[1] "guardians"
+[1] "sport"
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+[1] "generale"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "mensa"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "medici"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "guardians"
+[1] "sport"
+[1] "generale"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "mensa"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "medici"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "guardians"
+[1] "sport"
+Error in `req_perform()`:
+! HTTP 410 Gone.
+Backtrace:
+     ▆
+  1. ├─base::source("note/note_preparazione.R")
+  2. │ ├─base::withVisible(eval(ei, envir))
+  3. │ └─base::eval(ei, envir)
+  4. │   └─base::eval(ei, envir)
+  5. └─global get_lista_note()
+  6.   └─global todoist_req("tasks")
+  7.     ├─httr2::resp_body_json(...)
+  8.     │ └─httr2:::check_response(resp)
+  9.     │   └─httr2:::is_response(resp)
+ 10.     └─httr2::req_perform(...)
+ 11.       └─httr2:::handle_resp(req, resp, error_call = error_call)
+ 12.         └─httr2:::resp_failure_cnd(req, resp, error_call = error_call)
+ 13.           ├─rlang::catch_cnd(...)
+ 14.           │ ├─rlang::eval_bare(...)
+ 15.           │ ├─base::tryCatch(...)
+ 16.           │ │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 17.           │ │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 18.           │ │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 19.           │ └─base::force(expr)
+ 20.           └─rlang::abort(...)
+Esecuzione interrotta
