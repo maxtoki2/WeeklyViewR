@@ -44,7 +44,7 @@ render_lista_note <- function(lista = lista_note){
   lapply(unique(lista_note$priority), function(p){
     lista %>% 
       filter(priority == p) %>% 
-      arrange(project_order, order) %>% 
+      arrange(project_order, child_order) %>% 
       select(text) %>% 
       unlist() %>% 
       toString()
