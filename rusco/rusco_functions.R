@@ -39,7 +39,8 @@ get_calendar <- function(
   
   response_content <- content(response, "text")
   if(page_status == 200 & response_content != ""){
-    parsed_content <- fromJSON(response_content)$calendario
+    json_clean <- str_extract(response_content, "^\\{.*\\}")
+    parsed_content <- fromJSON(json_clean)$calendario
     formatted_content <- parsed_content %>% 
       #filter(week(data) == week(giorno)) %>% 
       unnest(conferimenti) %>% 
