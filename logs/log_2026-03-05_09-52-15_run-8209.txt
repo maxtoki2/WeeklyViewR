@@ -1,0 +1,120 @@
+Starting R run: 2026-03-05_09-52-15_run-8209
+GitHub SHA: 3f2157a01de703cc0a85a659fc5a4216e550f99d
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+[1] "guardians"
+[1] "sport"
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+[1] "generale"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "mensa"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "medici"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "guardians"
+[1] "sport"
+[1] "generale"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "mensa"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "medici"
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by colonna and gruppo.
+ℹ Output is grouped by colonna.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(colonna, gruppo))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+[1] "guardians"
+[1] "sport"
+
+
+processing file: index.Rmd
+1/8                  
+2/8 [setup]          
+3/8                  
+4/8 [unnamed-chunk-1]
+Error in `image_to_base64()`:
+! File(s) not found: f1.png
+Backtrace:
+     ▆
+  1. ├─base::withVisible(knit_print(x, ...))
+  2. ├─knitr::knit_print(x, ...)
+  3. └─flextable:::knit_print.flextable(x, ...)
+  4.   └─flextable:::knit_to_html(x, bookdown = is_bookdown, quarto = is_quarto)
+  5.     └─flextable:::gen_raw_html(...)
+  6.       └─flextable:::html_content_strs(x)
+  7.         └─flextable:::runs_as_html(x, chunk_data = information_data_chunk(x))
+  8.           ├─...[]
+  9.           └─data.table:::`[.data.table`(...)
+ 10.             └─base::eval(jsub, SDenv, parent.frame())
+ 11.               └─base::eval(jsub, SDenv, parent.frame())
+ 12.                 └─flextable:::img_as_html(...)
+ 13.                   └─officer::image_to_base64(img_data)
+ 14.                     └─cli::cli_abort(...)
+ 15.                       └─rlang::abort(...)
+
+Quitting from index.Rmd:87-104 [unnamed-chunk-1]
+Esecuzione interrotta
