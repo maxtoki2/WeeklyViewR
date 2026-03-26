@@ -12,14 +12,14 @@ param_calendari <- c(
 param_rusco_days_offset <- 1
 
 param_url_mensa_base <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download"
-param_url_mensa_doc_id <- "68f5e18203ce61009b6a9f32"
+param_url_mensa_doc_id <- "68f5e18203ce61009b6a9f32" # find the new ones at https://www.comune.sassomarconi.bologna.it/servizi/educazione-formazione/servizio-mensa-scolastica
 
 param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
 
 param_id_medici <- c("boschi" = 11047, "zatti" = 13277,"alberghini" = 16841)
 
 
-lista_esclusione <- c("prepartita", "postpartita", "approfondimento", "news", "presentazione", "test")
+lista_esclusione <- c("prepartita", "postpartita", "approfondimento", "news", "presentazione", "test", "anatomy", "notebook", "studio")
 
 sky_parameters <- list(
   keywords = tibble::tribble(
@@ -32,6 +32,7 @@ sky_parameters <- list(
     , "Volley", " ", lista_esclusione, "volley.png"
     , "Altri", " ", c("padel", "judo", lista_esclusione), "sport.png"
     # , "Tennis", lista_esclusione, "tennis.png"
+    , "Baseball", lista_esclusione, "sport.png"
   )
   , valid_hours = 7:22
 )
