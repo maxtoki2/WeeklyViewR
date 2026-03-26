@@ -18,8 +18,12 @@ todoist_req <- function(endpoint, query = NULL) {
 get_lista_note <- function(
     project_names = c("Casa", "Trasferta", "Acquisti da fare")
     , emojis = emoji(c("house", "airplane", "shopping_cart"))
+    , hide_subtasks <- TRUE
 ){
   tasks <- todoist_req("tasks")$results
+  
+  if(hide_subtasks)
+    tasks <- tasks %>% filter(is.na(parent_id))
   
   projects <- todoist_req("projects")$results
   
