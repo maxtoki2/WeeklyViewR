@@ -31,8 +31,8 @@ sky_parameters <- list(
     , "Atletica", " ", lista_esclusione, "atletica.png"
     , "Volley", " ", lista_esclusione, "volley.png"
     , "Altri", " ", c("padel", "judo", lista_esclusione), "sport.png"
-    # , "Tennis", lista_esclusione, "tennis.png"
-    , "Baseball", lista_esclusione, "sport.png"
+    # , "Tennis", " ", lista_esclusione, "tennis.png"
+    , "Baseball", " ", lista_esclusione, "sport.png"
   )
   , valid_hours = 7:22
 )
