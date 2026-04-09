@@ -209,6 +209,66 @@ document.addEventListener("DOMContentLoaded", generateCalendar);
 }
 </style>
 
+### Registro
+
+<div id="registro-container"></div>
+
+<div style="text-align:center; margin-top: 1em;">
+  <button onclick="resetRegistro()">Reset</button>
+</div>
+
+<script>
+function generateRegistro() {
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  let tableHTML = `<table border="1" style="border-collapse:collapse; width:100%">`;
+  
+  tableHTML += `
+    <tr>
+      <th>Blocco Caldaia</th>
+      <th>Pastiglie Zanzare</th>
+    </tr>
+  `;
+
+  for (let i = 0; i < 15; i++) {
+    const id1 = `registro-caldaia-${i}`;
+    const id2 = `registro-zanzare-${i}`;
+
+    const val1 = localStorage.getItem(id1) || today;
+    const val2 = localStorage.getItem(id2) || today;
+
+    tableHTML += `
+      <tr>
+        <td><input type="date" id="${id1}" value="${val1}"></td>
+        <td><input type="date" id="${id2}" value="${val2}"></td>
+      </tr>
+    `;
+  }
+
+  tableHTML += `</table>`;
+  document.getElementById("registro-container").innerHTML = tableHTML;
+
+  // Save on change
+  const inputs = document.querySelectorAll("#registro-container input");
+  inputs.forEach(input => {
+    input.addEventListener("change", (e) => {
+      localStorage.setItem(e.target.id, e.target.value);
+    });
+  });
+}
+
+// Reset function
+function resetRegistro() {
+  for (let i = 0; i < 15; i++) {
+    localStorage.removeItem(`registro-caldaia-${i}`);
+    localStorage.removeItem(`registro-zanzare-${i}`);
+  }
+  generateRegistro();
+}
+
+document.addEventListener("DOMContentLoaded", generateRegistro);
+</script>
+
+
 ##  {.tabset}
 
 ```{r results='asis', echo=FALSE}
