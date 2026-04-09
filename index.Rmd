@@ -213,19 +213,26 @@ document.addEventListener("DOMContentLoaded", generateCalendar);
 
 <div id="registro-container"></div>
 
-<div style="text-align:center; margin-top: 1em;">
-  <button onclick="resetRegistro()">Reset</button>
-</div>
-
 <script>
 function generateRegistro() {
-  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
   let tableHTML = `<table border="1" style="border-collapse:collapse; width:100%">`;
   
   tableHTML += `
     <tr>
-      <th>Blocco Caldaia</th>
-      <th>Pastiglie Zanzare</th>
+      <th style="text-align:center;">
+        <div><strong>Blocco</strong></div>
+        <div><strong>Caldaia</strong></div>
+        <div style="margin-top:5px;">
+          <button onclick="resetColumn('caldaia')">Reset</button>
+        </div>
+      </th>
+      <th style="text-align:center;">
+        <div><strong>Pastiglie </strong></div>
+        <div><strong>Zanzare</strong></div>
+        <div style="margin-top:5px;">
+          <button onclick="resetColumn('zanzare')">Reset</button>
+        </div>
+      </th>
     </tr>
   `;
 
@@ -233,8 +240,8 @@ function generateRegistro() {
     const id1 = `registro-caldaia-${i}`;
     const id2 = `registro-zanzare-${i}`;
 
-    const val1 = localStorage.getItem(id1) || today;
-    const val2 = localStorage.getItem(id2) || today;
+    const val1 = localStorage.getItem(id1) || "";
+    const val2 = localStorage.getItem(id2) || "";
 
     tableHTML += `
       <tr>
@@ -256,18 +263,20 @@ function generateRegistro() {
   });
 }
 
-// Reset function
-function resetRegistro() {
+// Reset a whole column
+function resetColumn(type) {
   for (let i = 0; i < 15; i++) {
-    localStorage.removeItem(`registro-caldaia-${i}`);
-    localStorage.removeItem(`registro-zanzare-${i}`);
+    const id = `registro-${type}-${i}`;
+    localStorage.removeItem(id);
+
+    // Clear visible input if present
+    const el = document.getElementById(id);
+    if (el) el.value = "";
   }
-  generateRegistro();
 }
 
 document.addEventListener("DOMContentLoaded", generateRegistro);
 </script>
-
 
 ##  {.tabset}
 
