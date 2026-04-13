@@ -12,7 +12,7 @@ get_menu <- function(
   
   menu2 <- menu %>% 
     # image_crop(crop_coordinates)  %>% 
-    image_threshold(type = "white", threshold = "70%") %>% 
+    image_threshold(type = "white", threshold = "40%") %>% 
     image_morphology(method = "Dilate", kernel = "Rectangle:1x2") 
   
   ocr_info <- menu2 %>% 
@@ -45,7 +45,7 @@ get_menu <- function(
     date_from <- dmy(paste0(week_boxes$date_from[i], "/2020"))
     date_to <-   dmy(paste0(week_boxes$date_to[i], "/2020"))
     gruppo <- week_boxes$gruppo_sett[i]
-    year(date_from) <- anno_scolastico_vec[ifelse(month(date_from) >= 9, 1, 2)]
+    year(date_from) <- anno_scolastico_vec[ifelse(month(date_to) >= 9, 1, 2)]
     year(date_to) <- anno_scolastico_vec[ifelse(month(date_to) >= 9, 1, 2)]
     data.frame(
       data = seq.Date(date_from, date_to, "1 day")
