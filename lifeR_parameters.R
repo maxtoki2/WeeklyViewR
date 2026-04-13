@@ -12,7 +12,7 @@ param_calendari <- c(
 param_rusco_days_offset <- 1
 
 param_url_mensa_base <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download"
-param_url_mensa_doc_id <- "68f5e18203ce61009b6a9f32" # find the new ones at https://www.comune.sassomarconi.bologna.it/servizi/educazione-formazione/servizio-mensa-scolastica
+param_url_mensa_doc_id <- "69d6347f34a5a6009a5935f1" # find the new ones at https://www.comune.sassomarconi.bologna.it/servizi/educazione-formazione/servizio-mensa-scolastica
 
 param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
 
