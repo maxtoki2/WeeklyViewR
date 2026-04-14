@@ -19,7 +19,7 @@ param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
 param_id_medici <- c("boschi" = 11047, "zatti" = 13277,"alberghini" = 16841)
 
 
-lista_esclusione <- c("prepartita", "postpartita", "approfondimento", "news", "presentazione", "test", "anatomy", "notebook", "studio")
+lista_esclusione <- c("prepartita", "postpartita", "approfondimento", "news", "presentazione", "test", "anatomy", "notebook", "studio", "debata", "Baráž")
 
 sky_parameters <- list(
   keywords = tibble::tribble(
@@ -39,4 +39,11 @@ sky_parameters <- list(
   
 rsi_parameters <- list(
   exclude_list = c("Altri sport", "Calcio")
+)
+
+ct_parameters <- list(
+  translations = tribble(
+    ~czech, ~italian
+    , "Hokej", "Hockey"
+  )
 )

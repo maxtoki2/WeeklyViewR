@@ -6,6 +6,7 @@ IMPROVEMENTS
 - Messaggi (e.g. medico non trovato)
 - MiLB
   - aggiungi avversario (abbr)
+- Medici: assegnare nome anziche abbreviazione
 
 CONTENTS
 - Meteo (https://stackoverflow.com/questions/73195711/how-to-get-a-day-weather-forecast-for-a-list-of-cities-using-r)
@@ -21,6 +22,7 @@ CONTENTS
   - Laola
   - Ticino
 - Calendario outlook
+- Treni in partenza (anche bus?)
 
 MASTER
 
