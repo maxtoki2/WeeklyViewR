@@ -1,0 +1,53 @@
+Starting R run: 2026-04-15_22-13-07_run-8944
+GitHub SHA: 14c55e820ede76afda69c1f8668ebe856d442ceb
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+[1] "guardians"
+[1] "sport"
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Errore in open.connection(con, "rb") : 
+  non è possibile aprire la connessione a 'https://epg.discovery.indazn.com/eu/v2/Epg?%24format=json&date=2026-04-13&country=IT&languageCode=it'
+Chiamate: source ... parse_and_simplify -> parseJSON -> parse_con -> open -> open.connection
+In aggiunta: Messaggio di avvertimento:
+In open.connection(con, "rb") :
+  cannot open URL 'https://epg.discovery.indazn.com/eu/v2/Epg?%24format=json&date=2026-04-13&country=IT&languageCode=it': HTTP status was '403 Forbidden'
+Esecuzione interrotta
