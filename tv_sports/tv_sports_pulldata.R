@@ -25,6 +25,7 @@ tv_sports <- bind_rows(
   , sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
   , parse_rsi()
   , prepare_ct_table()
+  , prepare_dazn_table()
 ) %>% 
   arrange(data, ora)
 
