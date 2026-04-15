@@ -6,6 +6,7 @@ source("tv_sports/nhl_functions.R")
 source("tv_sports/sky_functions.R")
 source("tv_sports/rsi_functions.R")
 source("tv_sports/ct_functions.R")
+source("tv_sports/dazn_functions.R")
 
 # processa
 sky_schedule <- lapply(periodo, function(d){
