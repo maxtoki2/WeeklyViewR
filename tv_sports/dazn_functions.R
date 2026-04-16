@@ -1,6 +1,8 @@
 # DAZN functions
 pull_dazn_data <- function(date = today(), baseurl = glue("https://epg.discovery.indazn.com/eu/v2/Epg?%24format=json&date={date}&country=IT&languageCode=it")){
-  fromJSON(baseurl)$Tiles
+  res <- GET(baseurl)
+  if(!http_error(res))
+    fromJSON(baseurl)$Tiles
 }
 
 # parsed_dazn <- pull_dazn_data()

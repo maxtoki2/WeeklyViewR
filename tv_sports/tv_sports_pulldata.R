@@ -2,6 +2,7 @@
 print("sport")
 
 # load all the parsers
+# TODO: make it a lapply
 source("tv_sports/nhl_functions.R")
 source("tv_sports/sky_functions.R")
 source("tv_sports/rsi_functions.R")
@@ -22,6 +23,7 @@ sky_schedule <- lapply(periodo, function(d){
 
 # aggreaga
 tv_sports <- bind_rows(
+  # TODO: make them all consistent (prepare_[xyz]_table)
   prepare_nhl_table(get_nhl_games())
   , sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
   , parse_rsi()
