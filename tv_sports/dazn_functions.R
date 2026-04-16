@@ -1,6 +1,20 @@
 # DAZN functions
 pull_dazn_data <- function(date = today(), baseurl = glue("https://epg.discovery.indazn.com/eu/v2/Epg?%24format=json&date={date}&country=IT&languageCode=it")){
-  res <- GET(baseurl)
+  res <- GET(
+    baseurl,
+    add_headers(
+      `User-Agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
+                      (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      `Accept` = "application/json, text/plain, */*",
+      `Accept-Language` = "it-IT,it;q=0.9,en;q=0.8",
+      `Connection` = "keep-alive"
+    )
+  )
+  
+  status_code(res)
+  headers(res)
+  # content(res, "text")
+  
   if(!http_error(res))
     fromJSON(baseurl)$Tiles
 }
