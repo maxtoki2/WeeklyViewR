@@ -1,0 +1,89 @@
+Starting R run: 2026-04-20_01-47-46_run-9012
+GitHub SHA: 237319cd9ff124ee278e00dbeb66792b478a77a8
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+[1] "guardians"
+[1] "sport"
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Date in ISO8601 format; converting timezone from UTC to "Europe/Rome".
+Errore in UseMethod("filter") : 
+  su un oggetto di classe "filter" è stato usato un metodo non applicabile per "list"
+Chiamate: source ... mutate -> unnest -> rename -> select -> filter -> filter
+In aggiunta: Messaggi di avvertimento:
+1: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+2: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+3: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+4: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+5: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+6: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+7: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+8: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+9: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+10: There was 1 warning in `filter()`.
+ℹ In argument: `str_detect(...)`.
+Caused by warning in `stri_detect_regex()`:
+! argument is not an atomic vector; coercing 
+Esecuzione interrotta
