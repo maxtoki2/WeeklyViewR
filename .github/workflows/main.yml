@@ -57,7 +57,6 @@ jobs:
             cran::jsonlite
             cran::flextable
             cran::calendar
-            cran::DescTools
             cran::rmarkdown
             cran::knitr
             cran::kableExtra

@@ -1,3 +1,16 @@
+TextContrastColor <- function (col, white = "white", black = "black", method = c("glynn", "sonego")){
+  # pasted to remove problematic dependency on DescTools
+  switch(match.arg(arg = method, choices = c("glynn", "sonego")), 
+         glynn = {
+           vx <- rep(white, length(col))
+           vx[apply(col2rgb(col), 2, mean) > 127] <- black
+         }, sonego = {
+           L <- c(0.2, 0.6, 0) %*% col2rgb(col)/255
+           vx <- ifelse(L >= 0.2, black, white)
+         })
+  return(vx)
+}
+
 get_images <- function(
     pic_file # file name, no extension
     , file_extension # one of png or svg

@@ -1,6 +1,7 @@
 BUGs
 
 FIX
+- DAZN ha un anti-bot?
 
 IMPROVEMENTS
 - Messaggi (e.g. medico non trovato)
