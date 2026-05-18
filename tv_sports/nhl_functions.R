@@ -15,12 +15,12 @@ pull_nhl_json <- function(date){
 parse_nhl_json <- function(j){
   lapply(1:length(j$gameWeek$date), function(i){
     games_df <- j$gameWeek[i,"games"][[1]] 
-    if(nrow(games_df) > 0){
+    if(nrow(games_df) > 0 & "startTimeUTC" %in% colnames(games_df)){
       games_df %>% 
         unnest(cols = c(venue, tvBroadcasts, awayTeam, homeTeam, periodDescriptor), names_sep = "_") %>% 
         select(startTimeUTC, awayTeam_abbrev, homeTeam_abbrev)
     } else {
-      games_df
+      NULL #games_df
     }
     
   }) %>% 
