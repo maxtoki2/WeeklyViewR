@@ -45,6 +45,6 @@ prepare_ct_table <- function(dates_list = periodo){
       , gruppo = "tv_sports"
       , testo_immagine = descrizione
       , immagine = glue("tv_sports/glyphs/{tolower(italian)}.png")
-      , colore = NA
+      , colore = NA_character_
     )
 }
