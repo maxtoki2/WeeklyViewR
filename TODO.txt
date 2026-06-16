@@ -16,7 +16,7 @@ CONTENTS
   x NOW
   x NHL.tv
   x RSI
-  - CT
+  x CT
   - DAZN
   - RaiSport
   - RSTV

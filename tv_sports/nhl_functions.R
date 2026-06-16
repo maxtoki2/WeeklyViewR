@@ -13,9 +13,9 @@ pull_nhl_json <- function(date){
 # pull_nhl_json(today())
 
 parse_nhl_json <- function(j){
-  lapply(1:length(j$gameWeek$date), function(i){
+  week_df <- lapply(1:length(j$gameWeek$date), function(i){
     games_df <- j$gameWeek[i,"games"][[1]] 
-    if(nrow(games_df) > 0 & "startTimeUTC" %in% colnames(games_df)){
+    if((!is.null(games_df) && nrow(games_df) > 0) & "startTimeUTC" %in% colnames(games_df)){
       games_df %>% 
         unnest(cols = c(venue, tvBroadcasts, awayTeam, homeTeam, periodDescriptor), names_sep = "_") %>% 
         select(startTimeUTC, awayTeam_abbrev, homeTeam_abbrev)
@@ -24,12 +24,17 @@ parse_nhl_json <- function(j){
     }
     
   }) %>% 
-    bind_rows() %>%
-    distinct() %>% 
-    mutate(
-      time_utc = ymd_hms(startTimeUTC, tz = "UTC"),
-      time_cet = with_tz(time_utc, "Europe/Zurich")
-    )
+    bind_rows() 
+  
+  if(nrow(week_df) > 0){
+    week_df %>%
+      distinct() %>% 
+      mutate(
+        time_utc = ymd_hms(startTimeUTC, tz = "UTC"),
+        time_cet = with_tz(time_utc, "Europe/Zurich")
+      )  
+  }
+  week_df
 }
 
 # parse_nhl_json(pull_nhl_json(today()))
@@ -50,16 +55,20 @@ get_nhl_games <- function(dates_list = periodo){
 
 # TODO: parse
 prepare_nhl_table <- function(parsed_games, hours_to_show = 6:23){
-  parsed_games %>% 
-    filter(hour(time_cet) %in% hours_to_show) %>% 
-    mutate(
-      data = date(time_cet)
-      , ora = glue("{hour(time_cet)}:{sprintf('%02d', minute(time_cet))}")
-      , descrizione = glue("{ora} NHL {awayTeam_abbrev} @ {homeTeam_abbrev}")
-      , gruppo = "tv_sports"
-      , testo_immagine = descrizione
-      , immagine = "tv_sports//glyphs//hockey.png"
-      , colore = NA_character_
-    )
+  if(nrow(parsed_games) > 0){
+    parsed_games %>% 
+      filter(hour(time_cet) %in% hours_to_show) %>% 
+      mutate(
+        data = date(time_cet)
+        , ora = glue("{hour(time_cet)}:{sprintf('%02d', minute(time_cet))}")
+        , descrizione = glue("{ora} NHL {awayTeam_abbrev} @ {homeTeam_abbrev}")
+        , gruppo = "tv_sports"
+        , testo_immagine = descrizione
+        , immagine = "tv_sports//glyphs//hockey.png"
+        , colore = NA_character_
+      )  
+  } else {
+    NULL
+  }
 }
 
