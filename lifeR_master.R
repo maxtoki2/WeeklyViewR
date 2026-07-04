@@ -30,7 +30,7 @@ param_info <- tribble(
   , "calendario", "generale", 1, 0, 6, NA, NA # DEBUG: pulldata assegna "famiglia"
   , "mlb", "generale", 13, 9, 10, .4, .4
   , "mensa", "mensa", 4, 0, 8, NA, NA
-  , "medici", "medici", 2, -3, 8, NA, NA
+  # , "medici", "medici", 2, -3, 8, NA, NA
   , "guardians", "guardians", 2, 0, 10, .4, .4
   , "tv_sports", "sport", 1, 0, 8, .25, .25
 )
