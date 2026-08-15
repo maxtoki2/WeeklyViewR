@@ -1,0 +1,65 @@
+Starting R run: 2026-08-15_14-35-40_run-10262
+GitHub SHA: e0621726e942da8b3a7c73897b817b661bbd7074
+Triggered by: schedule
+-----------------------------------
+preparation[1] "LC_CTYPE=it_IT.UTF-8;LC_NUMERIC=C;LC_TIME=it_IT.UTF-8;LC_COLLATE=it_IT.UTF-8;LC_MONETARY=it_IT.UTF-8;LC_MESSAGES=it_IT.UTF-8;LC_PAPER=it_IT.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=it_IT.UTF-8;LC_IDENTIFICATION=C"
+Linking to ImageMagick 6.9.12.98
+Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, raw, webp, x11
+Disabled features: cairo, ghostscript, rsvg
+Using 4 threads
+
+Caricamento pacchetto: ‘dplyr’
+
+I seguenti oggetti sono mascherati da ‘package:stats’:
+
+    filter, lag
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Caricamento pacchetto: ‘lubridate’
+
+I seguenti oggetti sono mascherati da ‘package:base’:
+
+    date, intersect, setdiff, union
+
+[1] "rifiuti"
+[1] "******************* RIGHE RUSCO *****************************"
+[1] 19
+[1] "calendario"
+[1] "mlb"
+[1] "mensa"
+[1] "medici"
+Error in `req_perform()`:
+! HTTP 502 Bad Gateway.
+Backtrace:
+     ▆
+  1. ├─base::source(glue("{topic}/{topic}_pulldata.R"), local = TRUE)
+  2. │ ├─base::withVisible(eval(ei, envir))
+  3. │ └─base::eval(ei, envir)
+  4. │   └─base::eval(ei, envir)
+  5. ├─... %>% ...
+  6. ├─dplyr::mutate(...)
+  7. ├─dplyr::inner_join(...)
+  8. ├─dplyr::mutate(., giorno_nr = numero_giorno_sett(day))
+  9. ├─dplyr::mutate(...)
+ 10. ├─dplyr::mutate(., day = tolower(day))
+ 11. ├─dplyr::mutate(., gruppo = "medici")
+ 12. ├─dplyr::bind_rows(.)
+ 13. │ └─rlang::list2(...)
+ 14. └─base::lapply(param_id_medici, orari_medici)
+ 15.   └─global FUN(X[[i]], ...)
+ 16.     └─httr2::req_perform(...)
+ 17.       └─httr2:::handle_resp(req, resp, error_call = error_call)
+ 18.         └─httr2:::resp_failure_cnd(req, resp, error_call = error_call)
+ 19.           ├─rlang::catch_cnd(...)
+ 20.           │ ├─rlang::eval_bare(...)
+ 21.           │ ├─base::tryCatch(...)
+ 22.           │ │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 23.           │ │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 24.           │ │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 25.           │ └─base::force(expr)
+ 26.           └─rlang::abort(...)
+Esecuzione interrotta
