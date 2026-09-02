@@ -14,6 +14,7 @@ if(file_rusco %in% list.files(folder_rusco)){
   if(nrow(rusco_periodo) == 0){
     print("******************* successfully entered zero rows logic *****************************")
     rusco_periodo <- get_calendar(inizio_settimana, param_giorni)
+    print(nrow(rusco_periodo))
     saveRDS(rusco_periodo, glue("{folder_rusco}/{file_rusco}"))    
   }
 } else {
