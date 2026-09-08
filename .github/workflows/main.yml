@@ -78,6 +78,17 @@ jobs:
 
       - name: Set Time Zone
         run: echo "TZ=Europe/Rome" >> $GITHUB_ENV
+        
+      # ==================== INSERT TMATE STEP HERE ====================
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        env:
+          ID_INDIRIZZO: ${{ secrets.ID_INDIRIZZO }}
+          ID_CIVICO: ${{ secrets.ID_CIVICO }}
+          GCAL_FAMIGLIA: ${{ secrets.GCAL_FAMIGLIA }}
+          TODOIST_API_TOKEN: ${{ secrets.TODOIST_API_TOKEN }}
+          TZ: Europe/Rome
+      # ================================================================        
 
       - name: Run R script
         continue-on-error: true
