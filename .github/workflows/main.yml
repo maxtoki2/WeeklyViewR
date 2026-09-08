@@ -86,6 +86,7 @@ jobs:
         with:
           ## Limits SSH access strictly to your GitHub account
           limit-access-to-actor: false
+          upterm-server: ssh://uptermd.upterm.dev:443
         env:
           ID_INDIRIZZO: ${{ secrets.ID_INDIRIZZO }}
           ID_CIVICO: ${{ secrets.ID_CIVICO }}
