@@ -80,9 +80,12 @@ jobs:
       - name: Set Time Zone
         run: echo "TZ=Europe/Rome" >> $GITHUB_ENV
         
-      # ==================== INSERT TMATE STEP HERE ====================
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # ==================== INSERT UPTERM STEP HERE ====================
+      - name: Setup Upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          ## Limits SSH access strictly to your GitHub account
+          limit-access-to-actor: true
         env:
           ID_INDIRIZZO: ${{ secrets.ID_INDIRIZZO }}
           ID_CIVICO: ${{ secrets.ID_CIVICO }}
