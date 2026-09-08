@@ -7,6 +7,7 @@ get_calendar <- function(
     , id_indirizzo = secr_id_indirizzo
     , id_civico = secr_id_civico
 ){
+
   #start_date <- giorno - days(7)
   formatted_date <- format(inizio + hours(1), "%Y-%m-%dT%H:%M:%S")
   # Create the payload
@@ -33,6 +34,7 @@ get_calendar <- function(
       )
     )
     page_status <- response$status_code
+    message("4. Response Status Code: ", page_status)
     attempts_counter <- attempts_counter + 1
     if(page_status != 200) Sys.sleep(10)
   }

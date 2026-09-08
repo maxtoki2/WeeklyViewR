@@ -21,14 +21,25 @@ sky_schedule <- lapply(periodo, function(d){
   }
 }) %>% bind_rows()
 
+messag("\nNHL")
+nhl_tbl <- prepare_nhl_table(get_nhl_games())
+messag("\nSKY")
+sky_tbl <- sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
+messag("\nRSI")
+rsi_tbl <- parse_rsi()
+messag("\nCT")
+ct_tbl <- prepare_ct_table()
+messag("\nDAZN")
+dazn_tbl <- prepare_dazn_table()
+
 # aggreaga
 tv_sports <- bind_rows(
   # TODO: make them all consistent (prepare_[xyz]_table)
-  prepare_nhl_table(get_nhl_games())
-  , sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
-  , parse_rsi()
-  , prepare_ct_table()
-  , prepare_dazn_table()
+  nhl_tbl
+  , sky_tbl
+  , rsi_tbl
+  , ct_tbl
+  , dazn_tbl
 ) %>% 
   arrange(data, ora)
 
