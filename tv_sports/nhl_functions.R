@@ -57,6 +57,8 @@ get_nhl_games <- function(dates_list = periodo){
 prepare_nhl_table <- function(parsed_games, hours_to_show = 6:23){
   if(nrow(parsed_games) > 0){
     parsed_games %>% 
+      distinct() %>% 
+      mutate(time_cet = with_tz(ymd_hms(startTimeUTC), tzone = "CET")) %>% 
       filter(hour(time_cet) %in% hours_to_show) %>% 
       mutate(
         data = date(time_cet)
