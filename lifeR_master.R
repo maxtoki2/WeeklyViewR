@@ -32,7 +32,7 @@ param_info <- tribble(
   , "mensa", "mensa", 4, 0, 8, NA, NA
   , "medici", "medici", 2, -3, 8, NA, NA
   , "guardians", "guardians", 2, 0, 10, .4, .4
-  , "tv_sports", "sport", 1, 0, 8, .25, .25
+  # , "tv_sports", "sport", 1, 0, 8, .25, .25
 )
 
 giorno <- today()
