@@ -80,14 +80,6 @@ jobs:
       - name: Set Time Zone
         run: echo "TZ=Europe/Rome" >> $GITHUB_ENV
         
-      # ==================== CONNECT TO NORDVPN (ITALY) ====================
-      - name: Connect to NordVPN (Italy)
-        uses: nordvpn/connect-action@v1
-        with:
-          token: ${{ secrets.NORDVPN_ACCESS_TOKEN }}
-          country: Italy
-      # ====================================================================        
-        
 
       - name: Run R script
         continue-on-error: true
