@@ -8,7 +8,7 @@ orig_filext_cle <- "svg"
 outp_filext_cle <- "png"
 folder_cle <- "guardians/saved"
 file_cle <- glue("cle{min(periodo)}_{max(periodo)}.RDS")
-if(file_cle %in% list.files(folder_cle)){
+if(file_cle %in% list.files(folder_cle) && (now() - file.info(glue("{folder_cle}/{file_cle}"))$ctime) < days(1)){
   cle_periodo <- readRDS(glue("{folder_cle}/{file_cle}"))  
 } else {
   cle_periodo <- get_mlb_schedule(inizio_settimana, param_giorni, c(114, 445, 402, 437, 481), base_url = "https://bdfed.stitch.mlbinfra.com/bdfed/transform-milb-schedule?stitch_env=prod&sortTemplate=5&sportId=11&&sportId=12&&sportId=13&&sportId=14&&sportId=16")
