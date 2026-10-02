@@ -8,7 +8,7 @@ orig_filext_mlb <- "svg"
 outp_filext_mlb <- "png"
 folder_mlb <- "mlb/saved"
 file_mlb <- glue("mlb{min(periodo)}_{max(periodo)}.RDS")
-if(file_mlb %in% list.files(folder_mlb)){
+if(file_mlb %in% list.files(folder_mlb) && (now() - file.info(glue("{folder_mlb}/{file_mlb}"))$ctime) < days(1)){
   mlb_periodo <- readRDS(glue("{folder_mlb}/{file_mlb}"))  
 } else {
   mlb_periodo <- get_mlb_schedule(inizio_settimana, param_giorni, 114)
