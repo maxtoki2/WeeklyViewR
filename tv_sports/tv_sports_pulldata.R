@@ -29,8 +29,8 @@ message("\nRSI")
 rsi_tbl <- parse_rsi()
 message("\nCT")
 ct_tbl <- prepare_ct_table()
-message("\nDAZN")
-dazn_tbl <- prepare_dazn_table()
+# message("\nDAZN")
+# dazn_tbl <- prepare_dazn_table()
 
 # aggreaga
 tv_sports <- bind_rows(
