@@ -39,7 +39,7 @@ tv_sports <- bind_rows(
   , sky_tbl
   , rsi_tbl
   , ct_tbl
-  , dazn_tbl
+  #, dazn_tbl
 ) %>% 
   arrange(data, ora)
 
