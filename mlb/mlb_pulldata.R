@@ -16,7 +16,7 @@ if(file_mlb %in% list.files(folder_mlb) && (now() - file.info(glue("{folder_mlb}
 }
 # TODO: formatta, combina immagini
 
-if(!is.null(mlb_periodo)){
+if(!is.null(mlb_periodo) && nrow(mlb_periodo) > 0){
   # info periodo scelto
   mlb <- mlb_periodo %>% 
     filter(data %in% periodo) %>% 
