@@ -13,7 +13,7 @@ param_rusco_days_offset <- 1
 
 param_mensa_pagine <- c(1, 2)
 param_url_mensa_base <- "https://www.comune.sassomarconi.bologna.it/myportal/C_G972/api/content/download"
-param_url_mensa_doc_id <- "6aa8fc85ff9f23009973bf24" # find the new ones at https://www.comune.sassomarconi.bologna.it/servizi/educazione-formazione/servizio-mensa-scolastica
+param_url_mensa_doc_id <- "6accde37d1a5b0009a548210" # find the new ones at https://www.comune.sassomarconi.bologna.it/servizi/educazione-formazione/servizio-mensa-scolastica
 
 param_url_mensa <- glue("{param_url_mensa_base}?id={param_url_mensa_doc_id}")
 
