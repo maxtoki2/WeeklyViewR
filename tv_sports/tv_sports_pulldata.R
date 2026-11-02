@@ -27,8 +27,8 @@ message("\nSKY")
 sky_tbl <- sky_schedule %>% select(data, ora, descrizione, gruppo, testo_immagine, immagine, colore) %>% distinct()
 message("\nRSI")
 rsi_tbl <- parse_rsi()
-message("\nCT")
-ct_tbl <- prepare_ct_table()
+#message("\nCT")
+#ct_tbl <- prepare_ct_table()
 # message("\nDAZN")
 # dazn_tbl <- prepare_dazn_table()
 
@@ -38,7 +38,7 @@ tv_sports <- bind_rows(
   nhl_tbl
   , sky_tbl
   , rsi_tbl
-  , ct_tbl
+  #, ct_tbl
   #, dazn_tbl
 ) %>% 
   arrange(data, ora)
